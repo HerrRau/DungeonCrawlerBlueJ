@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=DungeonViewAusruestung
+comment1.params=c
+comment1.target=void\ setzeController(DungeonController)
+comment2.params=bildname
+comment2.target=void\ zeigeAusruestungGegenstandBild(java.lang.String)
+comment3.params=name
+comment3.target=void\ zeigeAusruestungGegenstandName(java.lang.String)
+comment4.params=text
+comment4.target=void\ zeigeAusruestungGegenstandBeschreibung(java.lang.String)
+comment5.params=name
+comment5.target=void\ zeigeAusruestungNachricht(java.lang.String)
+numComments=6

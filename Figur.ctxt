@@ -1,0 +1,25 @@
+#BlueJ class context
+comment0.target=Figur
+comment1.params=
+comment1.target=Figur()
+comment10.params=f
+comment10.target=void\ interagiereMitFalle(Falle)
+comment11.params=k
+comment11.target=void\ interagiereMitKiste(Kiste)
+comment2.params=i
+comment2.target=Gegenstand\ gibAusRucksack(int)
+comment3.params=i
+comment3.target=void\ entferneAusRucksack(int)
+comment4.params=g
+comment4.target=boolean\ nimmGegenstandAuf(Gegenstand)
+comment5.params=w
+comment5.target=void\ setzeWaffe(Waffe)
+comment6.params=
+comment6.target=Waffe\ gibWaffe()
+comment7.params=
+comment7.target=int\ angriffGeben()
+comment8.params=
+comment8.target=int\ verteidigungGeben()
+comment9.params=gegner
+comment9.target=void\ interagiereMitGegner(Figur)
+numComments=12

@@ -1,0 +1,25 @@
+#BlueJ class context
+comment0.target=DungeonBewegungVorzimmer
+comment1.params=
+comment1.target=DungeonBewegungVorzimmer()
+comment10.params=text
+comment10.target=void\ zeigeBewegungNachricht(java.lang.String)
+comment11.params=miniDungeonTemp\ xPosPlayer\ yPosPlayer
+comment11.target=void\ zeigeBewegungDungeon(char[][],\ int,\ int)
+comment2.params=miniDungeonTemp\ xPosPlayer\ yPosPlayer
+comment2.target=void\ show(char[][],\ int,\ int)
+comment3.params=c
+comment3.target=void\ setzeController(DungeonController)
+comment4.params=evt
+comment4.target=void\ bLinksdrehen1_ActionPerformed(java.awt.event.ActionEvent)
+comment5.params=evt
+comment5.target=void\ bVor1_ActionPerformed(java.awt.event.ActionEvent)
+comment6.params=evt
+comment6.target=void\ bRechtsdrehen1_ActionPerformed(java.awt.event.ActionEvent)
+comment7.params=evt
+comment7.target=void\ bJa1_ActionPerformed(java.awt.event.ActionEvent)
+comment8.params=evt
+comment8.target=void\ bNein1_ActionPerformed(java.awt.event.ActionEvent)
+comment9.params=bildname
+comment9.target=void\ zeigeBewegungGegenstand(java.lang.String)
+numComments=12

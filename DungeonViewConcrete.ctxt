@@ -1,0 +1,27 @@
+#BlueJ class context
+comment0.target=DungeonViewConcrete
+comment1.params=
+comment1.target=DungeonViewConcrete()
+comment10.params=name
+comment10.target=void\ zeigeFigurNachricht(java.lang.String)
+comment11.params=u\ bildname
+comment11.target=void\ zeigeFigurKoerperteil(int,\ java.lang.String)
+comment12.params=bildname
+comment12.target=void\ zeigeFigurWaffe(java.lang.String)
+comment2.params=c
+comment2.target=void\ setzeController(DungeonController)
+comment3.params=miniDungeonTemp\ xPosPlayer\ yPosPlayer
+comment3.target=void\ zeigeBewegungDungeon(char[][],\ int,\ int)
+comment4.params=bildname
+comment4.target=void\ zeigeBewegungGegenstand(java.lang.String)
+comment5.params=text
+comment5.target=void\ zeigeBewegungNachricht(java.lang.String)
+comment6.params=bildname
+comment6.target=void\ zeigeAusruestungGegenstandBild(java.lang.String)
+comment7.params=name
+comment7.target=void\ zeigeAusruestungGegenstandName(java.lang.String)
+comment8.params=text
+comment8.target=void\ zeigeAusruestungGegenstandBeschreibung(java.lang.String)
+comment9.params=name
+comment9.target=void\ zeigeAusruestungNachricht(java.lang.String)
+numComments=13

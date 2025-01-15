@@ -1,0 +1,26 @@
+#BlueJ class context
+comment0.target=DungeonfensterRucksack
+comment0.text=\r\n\r\n\ Description\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ a\r\n\r\n\ @version\ 1.0\ from\ 31.12.2024\r\n\ @author\ \r\n
+comment1.params=
+comment1.target=DungeonfensterRucksack()
+comment10.params=evt
+comment10.target=void\ bNein1_ActionPerformed(java.awt.event.ActionEvent)
+comment11.params=evt
+comment11.target=void\ bDrop1_ActionPerformed(java.awt.event.ActionEvent)
+comment2.params=evt
+comment2.target=void\ actionPerformed(java.awt.event.ActionEvent)
+comment3.params=evt
+comment3.target=void\ actionPerformed(java.awt.event.ActionEvent)
+comment4.params=evt
+comment4.target=void\ actionPerformed(java.awt.event.ActionEvent)
+comment5.params=evt
+comment5.target=void\ actionPerformed(java.awt.event.ActionEvent)
+comment6.params=args
+comment6.target=void\ main(java.lang.String[])
+comment7.params=evt
+comment7.target=void\ bLinks1_ActionPerformed(java.awt.event.ActionEvent)
+comment8.params=evt
+comment8.target=void\ bItem1_ActionPerformed(java.awt.event.ActionEvent)
+comment9.params=evt
+comment9.target=void\ bRechts1_ActionPerformed(java.awt.event.ActionEvent)
+numComments=12

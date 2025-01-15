@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=Gegenstand
+comment1.params=name\ beschreibung
+comment1.target=Gegenstand(java.lang.String,\ java.lang.String)
+comment2.params=
+comment2.target=java.lang.String\ gibBildname()
+comment3.params=s
+comment3.target=void\ setzeBildname(java.lang.String)
+comment4.params=
+comment4.target=char\ gibKuerzel()
+numComments=5

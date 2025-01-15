@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=DungeonViewBewegung
+comment1.params=miniDungeonTemp\ xPosPlayer\ yPosPlayer
+comment1.target=void\ zeigeBewegungDungeon(char[][],\ int,\ int)
+comment2.params=bildname
+comment2.target=void\ zeigeBewegungGegenstand(java.lang.String)
+comment3.params=text
+comment3.target=void\ zeigeBewegungNachricht(java.lang.String)
+numComments=4

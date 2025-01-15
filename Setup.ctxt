@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=Setup
+comment1.params=g
+comment1.target=char\ gibKuerzel(Gegenstand)
+comment2.params=g
+comment2.target=java.lang.String\ gibBildname(Gegenstand)
+comment3.params=c
+comment3.target=java.lang.String\ gibBildname(char)
+numComments=4

@@ -17,7 +17,8 @@ public class Main
         start();
     }
 
-    void start() {
+    void start() 
+    {
         Figur f = new Figur();
         f.setzeView(view);
         model.setzeFigur(f);

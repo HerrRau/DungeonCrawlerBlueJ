@@ -23,6 +23,7 @@ public class Main
         model.setzeFigur(f);
         model.anfang();
         f.setzeWaffe( new Waffe() );
+        
     }
 
 }

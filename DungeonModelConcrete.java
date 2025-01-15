@@ -5,30 +5,23 @@ public class DungeonModelConcrete implements DungeonModel
     char facing;
     int xpos;
     int ypos;
-    final static char FACING_N = 'A';
-    final static char FACING_E = '>';
-    final static char FACING_S = 'V';
-    final static char FACING_W = '<';
 
     DungeonView view;
-    // EingabeKonsole eingabe;
 
     Figur figur;
-
-    boolean use7533 = false;
-    boolean use3333 = false;
-    boolean use33333 = true;
-    boolean use7555 = false;
-    boolean use7777 = false;
+    
+    AusschnittErzeuger erzeuger;
 
     public DungeonModelConcrete(char[][] dung, int startX, int startY, char facing)
     { 
+        erzeuger = new AusschnittErzeuger(this);
         setzeFigur( new Figur() );
         setzeLevel(dung, startX, startY, facing);
     }
 
     public DungeonModelConcrete()
     {
+        erzeuger = new AusschnittErzeuger(this);
         setzeFigur( new Figur() );
         setzeLevel(erzeugeDungeonLeer(10), 1, 1, 'N');
         //fillExampleSimple();
@@ -36,9 +29,9 @@ public class DungeonModelConcrete implements DungeonModel
 
     }
     
-    private Gegenstand [][] erzeugeGegenstaende(char[][] dungeon) {
-        Gegenstand [][] temp = new Gegenstand[dungeon.length][];
-        for (int i=0; i< dungeon.length; i++)  {
+    private Gegenstand [][] erzeugeGegenstaende(char[][] dung) {
+        Gegenstand [][] temp = new Gegenstand[dung.length][];
+        for (int i=0; i< dung.length; i++)  {
             temp[i] = new Gegenstand[dungeon[i].length];
         }
         return temp;
@@ -135,415 +128,7 @@ public class DungeonModelConcrete implements DungeonModel
 
     }
 
-    private void printPosition() {
-        System.out.println(xpos+","+ypos+", facing "+facing+"\n");        
-    }
-
-    private char getFacingChar(char dir) {
-        if (dir=='N') return FACING_N;
-        else if (dir=='E') return FACING_E;
-        else if (dir=='S') return FACING_S;
-        else return FACING_W;
-
-    }
-
-    private void printDungeon() {
-        char[][] dungeonCopy = copy(dungeon);
-        dungeonCopy[ypos][xpos] = getFacingChar(facing); //Player
-        print(dungeonCopy);
-    }
-
-    private void print(char [][] dungeonTemp) {
-        for (int y=0; y<dungeonTemp.length; y++) {
-            for (int i=0; i<10-dungeonTemp[y].length/2; i++) {
-                System.out.print(" ");
-            }
-
-            for (int x=0; x<dungeonTemp[y].length; x++) {
-                char c = dungeonTemp[y][x];
-                System.out.print(c);
-            }
-            System.out.println();
-        }
-            System.out.println();
-    }
-
-    private  char[][] copy(char[][] org) {
-        char[][] temp = new char [org.length][];
-        for (int i=0; i< temp.length; i++) {
-            temp[i] = new char [org[i].length];
-            for (int j=0; j<temp[i].length; j++) {
-                temp[i][j] = org[i][j];
-            }
-        }
-        return temp;
-    }
-
-    private  char[][] convert(char[][] org) {
-        // 5333 to 3333
-        char[][] temp = new char [org.length][];
-        for (int i=0; i< temp.length; i++) {
-            if (i==0) {
-                temp[i] = new char [3];
-                temp[i][0] = org[i][1];
-                temp[i][1] = org[i][2];
-                temp[i][2] = org[i][3];
-            } else {
-                temp[i] = new char [org[i].length];
-                for (int j=0; j<temp[i].length; j++) {
-                    temp[i][j] = org[i][j];
-                }
-            }
-        }
-        return temp;
-    }
-
-    private char[][] createMiniDungeon7533(int posx, int posy, char facing) {
-        char[][] result = new char[4][];
-        result[0] = new char[7];
-        result[1] = new char[5];
-        result[2] = new char[3];
-        result[3] = new char[3];
-
-        int factorNorth = 1;
-        int factorEast= 1;
-        if (facing=='N') factorNorth = 1;
-        if (facing=='S') factorNorth = -1;
-        if (facing=='E') factorEast  = +1;
-        if (facing=='W') factorEast  = -1;
-
-        if (facing=='N' || facing == 'S') {
-            result[0][0] = get(posx-3*factorNorth, posy-3*factorNorth);
-            result[0][1] = get(posx-2*factorNorth, posy-3*factorNorth);
-            result[0][2] = get(posx-1*factorNorth, posy-3*factorNorth); 
-            result[0][3] = get(posx              , posy-3*factorNorth);
-            result[0][4] = get(posx+1*factorNorth, posy-3*factorNorth);
-            result[0][5] = get(posx+2*factorNorth, posy-3*factorNorth);
-            result[0][6] = get(posx+3*factorNorth, posy-3*factorNorth);
-
-            result[1][0] = get(posx-2*factorNorth, posy-2*factorNorth);
-            result[1][1] = get(posx-1*factorNorth, posy-2*factorNorth);
-            result[1][2] = get(posx,               posy-2*factorNorth);
-            result[1][3] = get(posx+1*factorNorth, posy-2*factorNorth);
-            result[1][2] = get(posx+2*factorNorth, posy-2*factorNorth);
-
-            result[2][0] = get(posx-1*factorNorth, posy-1*factorNorth);
-            result[2][1] = get(posx,               posy-1*factorNorth);
-            result[2][2] = get(posx+1*factorNorth, posy-1*factorNorth);
-
-            result[3][0] = get(posx-1*factorNorth, posy);
-            result[3][1] = get(posx,               posy);
-            result[3][2] = get(posx+1*factorNorth, posy);
-        }
-
-        else if (facing=='E' || facing == 'W') {
-            result[0][0] = get(posx+3*factorEast, posy-3*factorEast);
-            result[0][1] = get(posx+3*factorEast, posy-2*factorEast);
-            result[0][2] = get(posx+3*factorEast, posy-1*factorEast);
-            result[0][3] = get(posx+3*factorEast, posy);
-            result[0][4] = get(posx+3*factorEast, posy+1*factorEast);
-            result[0][5] = get(posx+3*factorEast, posy+2*factorEast);
-            result[0][6] = get(posx+3*factorEast, posy+3*factorEast);
-
-            result[1][0] = get(posx+2*factorEast, posy-2*factorEast);
-            result[1][1] = get(posx+2*factorEast, posy-1*factorEast);
-            result[1][2] = get(posx+2*factorEast, posy);
-            result[1][3] = get(posx+2*factorEast, posy+1*factorEast);
-            result[1][2] = get(posx+2*factorEast, posy+2*factorEast);
-
-            result[2][0] = get(posx+1*factorEast, posy-1*factorEast);
-            result[2][1] = get(posx+1*factorEast, posy);
-            result[2][2] = get(posx+1*factorEast, posy+1*factorEast);
-
-            result[3][0] = get(posx,              posy-1*factorEast);
-            result[3][1] = get(posx,              posy);
-            result[3][2] = get(posx,              posy+1*factorEast);
-        }
-
-        //result[3][1] = 8; //player
-        return result;
-    }
-    private char[][] createMiniDungeon7555(int posx, int posy, char facing) {
-        char[][] result = new char[4][];
-        result[0] = new char[7];
-        result[1] = new char[5];
-        result[2] = new char[5];
-        result[3] = new char[5];
-
-        int factorNorth = 1;
-        int factorEast= 1;
-        if (facing=='N') factorNorth = 1;
-        if (facing=='S') factorNorth = -1;
-        if (facing=='E') factorEast  = +1;
-        if (facing=='W') factorEast  = -1;
-
-        if (facing=='N' || facing == 'S') {
-            result[0][0] = get(posx-3*factorNorth, posy-3*factorNorth);
-            result[0][1] = get(posx-2*factorNorth, posy-3*factorNorth);
-            result[0][2] = get(posx-1*factorNorth, posy-3*factorNorth); 
-            result[0][3] = get(posx              , posy-3*factorNorth);
-            result[0][4] = get(posx+1*factorNorth, posy-3*factorNorth);
-            result[0][5] = get(posx+2*factorNorth, posy-3*factorNorth);
-            result[0][6] = get(posx+3*factorNorth, posy-3*factorNorth);
-
-            result[1][0] = get(posx-2*factorNorth, posy-2*factorNorth);
-            result[1][1] = get(posx-1*factorNorth, posy-2*factorNorth);
-            result[1][2] = get(posx,               posy-2*factorNorth);
-            result[1][3] = get(posx+1*factorNorth, posy-2*factorNorth);
-            result[1][4] = get(posx+2*factorNorth, posy-2*factorNorth);
-
-            result[2][0] = get(posx-2*factorNorth, posy-1*factorNorth);
-            result[2][1] = get(posx-1*factorNorth, posy-1*factorNorth);
-            result[2][2] = get(posx,               posy-1*factorNorth);
-            result[2][3] = get(posx+1*factorNorth, posy-1*factorNorth);
-            result[2][4] = get(posx+2*factorNorth, posy-1*factorNorth);
-
-            result[3][0] = get(posx-2*factorNorth, posy);
-            result[3][1] = get(posx-1*factorNorth, posy);
-            result[3][2] = get(posx,               posy);
-            result[3][3] = get(posx+1*factorNorth, posy);
-            result[3][4] = get(posx+2*factorNorth, posy);
-        }
-
-        else if (facing=='E' || facing == 'W') {
-            result[0][0] = get(posx+3*factorEast, posy-3*factorEast);
-            result[0][1] = get(posx+3*factorEast, posy-2*factorEast);
-            result[0][2] = get(posx+3*factorEast, posy-1*factorEast);
-            result[0][3] = get(posx+3*factorEast, posy);
-            result[0][4] = get(posx+3*factorEast, posy+1*factorEast);
-            result[0][5] = get(posx+3*factorEast, posy+2*factorEast);
-            result[0][6] = get(posx+3*factorEast, posy+3*factorEast);
-
-            result[1][0] = get(posx+2*factorEast, posy-2*factorEast);
-            result[1][1] = get(posx+2*factorEast, posy-1*factorEast);
-            result[1][2] = get(posx+2*factorEast, posy);
-            result[1][3] = get(posx+2*factorEast, posy+1*factorEast);
-            result[1][4] = get(posx+2*factorEast, posy+2*factorEast);
-
-            result[2][0] = get(posx+1*factorEast, posy-2*factorEast);
-            result[2][1] = get(posx+1*factorEast, posy-1*factorEast);
-            result[2][2] = get(posx+1*factorEast, posy);
-            result[2][3] = get(posx+1*factorEast, posy+1*factorEast);
-            result[2][4] = get(posx+1*factorEast, posy+2*factorEast);
-
-            result[3][0] = get(posx,              posy-2*factorEast);
-            result[3][1] = get(posx,              posy-1*factorEast);
-            result[3][2] = get(posx,              posy);
-            result[3][3] = get(posx,              posy+1*factorEast);
-            result[3][4] = get(posx,              posy+2*factorEast);
-        }
-
-        //result[3][1] = 8; //player
-        return result;
-    }
-
-    
-    private char[][] createMiniDungeon7777(int posx, int posy, char facing) {
-        char[][] result = new char[4][];
-        result[0] = new char[7];
-        result[1] = new char[7];
-        result[2] = new char[7];
-        result[3] = new char[7];
-
-        int factorNorth = 1;
-        int factorEast= 1;
-        if (facing=='N') factorNorth = 1;
-        if (facing=='S') factorNorth = -1;
-        if (facing=='E') factorEast  = +1;
-        if (facing=='W') factorEast  = -1;
-
-        if (facing=='N' || facing == 'S') {
-            result[0][0] = get(posx-3*factorNorth, posy-3*factorNorth);
-            result[0][1] = get(posx-2*factorNorth, posy-3*factorNorth);
-            result[0][2] = get(posx-1*factorNorth, posy-3*factorNorth); 
-            result[0][3] = get(posx              , posy-3*factorNorth);
-            result[0][4] = get(posx+1*factorNorth, posy-3*factorNorth);
-            result[0][5] = get(posx+2*factorNorth, posy-3*factorNorth);
-            result[0][6] = get(posx+3*factorNorth, posy-3*factorNorth);
-
-            result[1][0] = get(posx-3*factorNorth, posy-2*factorNorth);
-            result[1][1] = get(posx-2*factorNorth, posy-2*factorNorth);
-            result[1][2] = get(posx-1*factorNorth, posy-2*factorNorth); 
-            result[1][3] = get(posx              , posy-2*factorNorth);
-            result[1][4] = get(posx+1*factorNorth, posy-2*factorNorth);
-            result[1][5] = get(posx+2*factorNorth, posy-2*factorNorth);
-            result[1][6] = get(posx+3*factorNorth, posy-2*factorNorth);
-
-            result[2][0] = get(posx-3*factorNorth, posy-1*factorNorth);
-            result[2][1] = get(posx-2*factorNorth, posy-1*factorNorth);
-            result[2][2] = get(posx-1*factorNorth, posy-1*factorNorth); 
-            result[2][3] = get(posx              , posy-1*factorNorth);
-            result[2][4] = get(posx+1*factorNorth, posy-1*factorNorth);
-            result[2][5] = get(posx+2*factorNorth, posy-1*factorNorth);
-            result[2][6] = get(posx+3*factorNorth, posy-1*factorNorth);
-
-            result[3][0] = get(posx-3*factorNorth, posy-0*factorNorth);
-            result[3][1] = get(posx-2*factorNorth, posy-0*factorNorth);
-            result[3][2] = get(posx-1*factorNorth, posy-0*factorNorth); 
-            result[3][3] = get(posx              , posy-0*factorNorth);
-            result[3][4] = get(posx+1*factorNorth, posy-0*factorNorth);
-            result[3][5] = get(posx+2*factorNorth, posy-0*factorNorth);
-            result[3][6] = get(posx+3*factorNorth, posy-0*factorNorth);
-
-        }
-
-        else if (facing=='E' || facing == 'W') {
-            result[0][0] = get(posx+3*factorEast, posy-3*factorEast);
-            result[0][1] = get(posx+3*factorEast, posy-2*factorEast);
-            result[0][2] = get(posx+3*factorEast, posy-1*factorEast);
-            result[0][3] = get(posx+3*factorEast, posy);
-            result[0][4] = get(posx+3*factorEast, posy+1*factorEast);
-            result[0][5] = get(posx+3*factorEast, posy+2*factorEast);
-            result[0][6] = get(posx+3*factorEast, posy+3*factorEast);
-
-            result[1][0] = get(posx+2*factorEast, posy-3*factorEast);
-            result[1][1] = get(posx+2*factorEast, posy-2*factorEast);
-            result[1][2] = get(posx+2*factorEast, posy-1*factorEast);
-            result[1][3] = get(posx+2*factorEast, posy);
-            result[1][4] = get(posx+2*factorEast, posy+1*factorEast);
-            result[1][5] = get(posx+2*factorEast, posy+2*factorEast);
-            result[1][6] = get(posx+2*factorEast, posy+3*factorEast);
-
-            result[2][0] = get(posx+1*factorEast, posy-3*factorEast);
-            result[2][1] = get(posx+1*factorEast, posy-2*factorEast);
-            result[2][2] = get(posx+1*factorEast, posy-1*factorEast);
-            result[2][3] = get(posx+1*factorEast, posy);
-            result[2][4] = get(posx+1*factorEast, posy+1*factorEast);
-            result[2][5] = get(posx+1*factorEast, posy+2*factorEast);
-            result[2][6] = get(posx+1*factorEast, posy+3*factorEast);
-
-            result[3][0] = get(posx+0*factorEast, posy-3*factorEast);
-            result[3][1] = get(posx+0*factorEast, posy-2*factorEast);
-            result[3][2] = get(posx+0*factorEast, posy-1*factorEast);
-            result[3][3] = get(posx+0*factorEast, posy);
-            result[3][4] = get(posx+0*factorEast, posy+1*factorEast);
-            result[3][5] = get(posx+0*factorEast, posy+2*factorEast);
-            result[3][6] = get(posx+0*factorEast, posy+3*factorEast);
-
-        }
-
-        //result[3][1] = 8; //player
-        return result;
-    }
-
-    private char[][] createMiniDungeon(int posx, int posy, char facing) {
-        if (use7533) return createMiniDungeon7533(posx, posy, facing);
-        if (use33333) return createMiniDungeon33333(posx, posy, facing);
-        if (use7555) return createMiniDungeon7555(posx, posy, facing);
-        if (use7777) return createMiniDungeon7777(posx, posy, facing);
-        char[][] result = new char[4][];
-        result[0] = new char[5];
-        result[1] = new char[3];
-        result[2] = new char[3];
-        result[3] = new char[3];
-
-        int factorNorth = 1;
-        int factorEast= 1;
-        if (facing=='N') factorNorth = 1;
-        if (facing=='S') factorNorth = -1;
-        if (facing=='E') factorEast  = +1;
-        if (facing=='W') factorEast  = -1;
-
-        if (facing=='N' || facing == 'S') {
-            result[0][0] = get(posx-2*factorNorth, posy-3*factorNorth);
-            result[0][1] = get(posx-1*factorNorth, posy-3*factorNorth); 
-            result[0][2] = get(posx              , posy-3*factorNorth);
-            result[0][3] = get(posx+1*factorNorth, posy-3*factorNorth);
-            result[0][4] = get(posx+2*factorNorth, posy-3*factorNorth);
-            result[1][0] = get(posx-1*factorNorth, posy-2*factorNorth);
-            result[1][1] = get(posx,               posy-2*factorNorth);
-            result[1][2] = get(posx+1*factorNorth, posy-2*factorNorth);
-            result[2][0] = get(posx-1*factorNorth, posy-1*factorNorth);
-            result[2][1] = get(posx,               posy-1*factorNorth);
-            result[2][2] = get(posx+1*factorNorth, posy-1*factorNorth);
-            result[3][0] = get(posx-1*factorNorth, posy);
-            result[3][1] = get(posx,               posy);
-            result[3][2] = get(posx+1*factorNorth, posy);
-        }
-
-        else if (facing=='E' || facing == 'W') {
-            result[0][0] = get(posx+3*factorEast, posy-2*factorEast);
-            result[0][1] = get(posx+3*factorEast, posy-1*factorEast);
-            result[0][2] = get(posx+3*factorEast, posy);
-            result[0][3] = get(posx+3*factorEast, posy+1*factorEast);
-            result[0][4] = get(posx+3*factorEast, posy+2*factorEast);
-
-            result[1][0] = get(posx+2*factorEast, posy-1*factorEast);
-            result[1][1] = get(posx+2*factorEast, posy);
-            result[1][2] = get(posx+2*factorEast, posy+1*factorEast);
-
-            result[2][0] = get(posx+1*factorEast, posy-1*factorEast);
-            result[2][1] = get(posx+1*factorEast, posy);
-            result[2][2] = get(posx+1*factorEast, posy+1*factorEast);
-
-            result[3][0] = get(posx,              posy-1*factorEast);
-            result[3][1] = get(posx,              posy);
-            result[3][2] = get(posx,              posy+1*factorEast);
-        }
-
-        //result[3][1] = 8; //player
-        return result;
-    }
-
-    private char[][] createMiniDungeon33333(int posx, int posy, char facing) {
-        char[][] result = new char[5][];
-        result[0] = new char[3];
-        result[1] = new char[3];
-        result[2] = new char[3];
-        result[3] = new char[3];
-        result[4] = new char[3];
-
-        int factorNorth = 1;
-        int factorEast= 1;
-        if (facing=='N') factorNorth = 1;
-        if (facing=='S') factorNorth = -1;
-        if (facing=='E') factorEast  = +1;
-        if (facing=='W') factorEast  = -1;
-
-        if (facing=='N' || facing == 'S') {
-            result[0][0] = get(posx-1*factorNorth, posy-4*factorNorth); 
-            result[0][1] = get(posx              , posy-4*factorNorth);
-            result[0][2] = get(posx+1*factorNorth, posy-4*factorNorth);
-            result[1][0] = get(posx-1*factorNorth, posy-3*factorNorth); 
-            result[1][1] = get(posx              , posy-3*factorNorth);
-            result[1][2] = get(posx+1*factorNorth, posy-3*factorNorth);
-            result[2][0] = get(posx-1*factorNorth, posy-2*factorNorth);
-            result[2][1] = get(posx,               posy-2*factorNorth);
-            result[2][2] = get(posx+1*factorNorth, posy-2*factorNorth);
-            result[3][0] = get(posx-1*factorNorth, posy-1*factorNorth);
-            result[3][1] = get(posx,               posy-1*factorNorth);
-            result[3][2] = get(posx+1*factorNorth, posy-1*factorNorth);
-            result[4][0] = get(posx-1*factorNorth, posy);
-            result[4][1] = get(posx,               posy);
-            result[4][2] = get(posx+1*factorNorth, posy);
-        }
-
-        else if (facing=='E' || facing == 'W') {
-            result[0][0] = get(posx+4*factorEast, posy-1*factorEast);
-            result[0][1] = get(posx+4*factorEast, posy);
-            result[0][2] = get(posx+4*factorEast, posy+1*factorEast);
-
-            result[1][0] = get(posx+3*factorEast, posy-1*factorEast);
-            result[1][1] = get(posx+3*factorEast, posy);
-            result[1][2] = get(posx+3*factorEast, posy+1*factorEast);
-
-            result[2][0] = get(posx+2*factorEast, posy-1*factorEast);
-            result[2][1] = get(posx+2*factorEast, posy);
-            result[2][2] = get(posx+2*factorEast, posy+1*factorEast);
-
-            result[3][0] = get(posx+1*factorEast, posy-1*factorEast);
-            result[3][1] = get(posx+1*factorEast, posy);
-            result[3][2] = get(posx+1*factorEast, posy+1*factorEast);
-
-            result[4][0] = get(posx,              posy-1*factorEast);
-            result[4][1] = get(posx,              posy);
-            result[4][2] = get(posx,              posy+1*factorEast);
-        }
-
-        //result[3][1] = 8; //player
-        return result;
-    }    
-
+ 
     public boolean canGoForward() {
         if (facing == 'N') {
             if (isReachable(xpos, ypos-1)) return true;  
@@ -577,7 +162,7 @@ public class DungeonModelConcrete implements DungeonModel
         dungeon[y][x] = c;
     }    
 
-    private char get(int x, int y) {
+    public char get(int x, int y) {
         if (x<0 || x> dungeon.length-1) return Setup.BLOCK; 
         if (y<0 || y> dungeon.length-1) return Setup.BLOCK;         
         return dungeon[y][x];
@@ -682,16 +267,10 @@ public class DungeonModelConcrete implements DungeonModel
     }
 
     final protected void updateViewBewegung() {
-        char[][] mini = null;
-        if (use3333) {
-            mini = convert(createMiniDungeon(xpos, ypos, facing)); 
-        } else {
-            mini = createMiniDungeon(xpos, ypos, facing); 
-        }
-        view.zeigeBewegungDungeon(mini, xpos, ypos );
-        print (mini);
-        printDungeon();
-        //printPosition();
+        char [][] mini = erzeuger.createMiniDungeon(xpos,ypos,facing);
+        view.zeigeBewegungAusschnitt(mini, xpos, ypos );
+        //printDungeon();
+        view.zeigeBewegungDungeon(dungeon, xpos, ypos, facing);
     }
 
     public int gibPosX() {

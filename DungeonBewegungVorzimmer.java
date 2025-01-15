@@ -68,8 +68,13 @@ public class DungeonBewegungVorzimmer extends DungeonfensterBewegung implements 
     public void zeigeBewegungNachricht(String text) {
     }
 
-    public void zeigeBewegungDungeon(char[][] miniDungeonTemp, int xPosPlayer, int yPosPlayer) {
+    public void zeigeBewegungAusschnitt(char[][] miniDungeonTemp, int xPosPlayer, int yPosPlayer) {
         this.show(miniDungeonTemp,xPosPlayer,yPosPlayer);
     }
+    
+    public void zeigeBewegungDungeon(char[][] dungeon, int xPosPlayer, int yPosPlayer, char facing) {
+        
+    }
+
 
 }

@@ -4,6 +4,10 @@ public class Setup
     final static char BLOCK = '1';
     final static String imagePath = "images/";
     static boolean useTestMode = false;
+    final static char FACING_N = 'A';
+    final static char FACING_E = '>';
+    final static char FACING_S = 'V';
+    final static char FACING_W = '<';
 
     // //unused
     // static Gegenstand gibGegenstand(char c) {

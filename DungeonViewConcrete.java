@@ -4,9 +4,11 @@ public class DungeonViewConcrete implements DungeonView
     DungeonFigurVorzimmer view2;
     DungeonRucksackVorzimmer view3;
     // DungeonController controller;
+    ViewPrinter printer;
 
     public DungeonViewConcrete()
     {
+        printer = new ViewPrinter();
         view3 = new DungeonRucksackVorzimmer();
         view2 = new DungeonFigurVorzimmer();
         view1 = new DungeonBewegungVorzimmer();
@@ -19,8 +21,13 @@ public class DungeonViewConcrete implements DungeonView
         view3.setzeController(c);
     }
 
-    public void zeigeBewegungDungeon(char[][] miniDungeonTemp, int xPosPlayer, int yPosPlayer) {
-        view1.zeigeBewegungDungeon(miniDungeonTemp,xPosPlayer,yPosPlayer);
+    public void zeigeBewegungAusschnitt(char[][] miniDungeon, int xPosPlayer, int yPosPlayer) {
+        view1.zeigeBewegungAusschnitt(miniDungeon,xPosPlayer,yPosPlayer);
+        printer.zeigeBewegungAusschnitt(miniDungeon, xPosPlayer, yPosPlayer);
+    }
+
+    public void zeigeBewegungDungeon(char[][] dungeon, int xPosPlayer, int yPosPlayer, char facing) {
+        printer.zeigeBewegungDungeon(dungeon, xPosPlayer, yPosPlayer, facing);
     }
 
     public void zeigeBewegungGegenstand(String bildname) {

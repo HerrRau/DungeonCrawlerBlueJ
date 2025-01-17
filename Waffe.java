@@ -4,8 +4,8 @@ public class Waffe extends Gegenstand
     {
         super("Waffe", "Eine Waffe");
     }
-    
-        char gibKuerzel() {
+
+    public char gibKuerzel() {
         return 'w';
     }
 

@@ -5,11 +5,13 @@ public class Muenze extends Gegenstand
     public Muenze()
     {
         super("Muenze", "Eine Muenze.");        
+        setzeBildname("coin.png");
     }
     
-    char gibKuerzel() {
+    public char gibKuerzel() {
         return 'c';
     }
+
 
 
 }

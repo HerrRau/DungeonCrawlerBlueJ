@@ -1,5 +1,6 @@
+import crawlergame.*;
 
-public class Figur extends ModelSender
+public class Figur extends ModelSender //crawlergame.Figur
 {
     Gegenstand  [] rucksack;
 
@@ -18,15 +19,15 @@ public class Figur extends ModelSender
         rucksack = new Gegenstand[10];
     }
 
-    Gegenstand gibAusRucksack(int i) {
+    public Gegenstand gibAusRucksack(int i) {
         return rucksack[i];
     }
 
-    void entferneAusRucksack(int i) {
+    public void entferneAusRucksack(int i) {
         rucksack[i] = null;
     }
 
-    boolean nimmGegenstandAuf(Gegenstand g) {
+    public boolean nimmGegenstandAuf(Gegenstand g) {
         for (int i=0; i< rucksack.length; i++) {
             if (rucksack[i]==null) {
                 rucksack[i] = g;                
@@ -36,31 +37,31 @@ public class Figur extends ModelSender
         return false;
     }
     
-    void setzeWaffe(Waffe w) {
+    public void setzeWaffe(Waffe w) {
         waffe = w;
         gibAnsicht().zeigeFigurWaffe("sword.png");
     }
     
-    Waffe gibWaffe() {
+    public Waffe gibWaffe() {
         return waffe;
     }
     
-    int angriffGeben() {
+    public int angriffGeben() {
         return staerke;
     }
-    int verteidigungGeben() {
+    public int verteidigungGeben() {
         return geschicklichkeit;
     }
 
-    void interagiereMitGegner(Figur gegner) {
+    public void interagiereMitGegner(Figur gegner) {
 
     }
 
-    void interagiereMitFalle(Falle f) {
+    public void interagiereMitFalle(Falle f) {
 
     }
 
-    void interagiereMitKiste(Kiste k) {
+    public void interagiereMitKiste(Kiste k) {
 
     }
 

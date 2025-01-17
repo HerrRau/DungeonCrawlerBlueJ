@@ -1,44 +1,32 @@
-public class DungeonControllerConcrete implements DungeonController
+
+public class DungeonControllerConcrete extends crawlergame.DungeonControllerAbstract
 {
-    DungeonView view;
-    DungeonModel model;
-    int aktuellerGegenstand;
+    
+    DungeonModelSuS model;
 
     public DungeonControllerConcrete()
     {
     }
 
-    public void setzeModel(DungeonModel m) {
-        model =m;
-    }
+    // public void empfangeWunsch(int view, int nummer) {
+        
+    // }
 
-    public void setzeView(DungeonView v) {
-        view = v;
-    }
-
-    public void empfangeBewegungVorwaerts() {
-        if (model.canGoForward()) model.goForward();
-    }
-
-    public void empfangeBewegungDreheLinks() {
-        model.turnLeft();        
-    }
-
-    public void empfangeBewegungDreheRechts() {
-        model.turnRight();
+    void setzeModel(DungeonModelSuS m)  {
+        model = m;    
     }
 
     public void empfangeBewegungJa() {
-        Gegenstand g = model.gibGegenstandAnPosition();
-        if (g==null) return;
-        boolean geklappt = model.nimmGegenstand(g);
-        if (geklappt) {
-            model.entferneGegenstandAnPosition();            
-            String bildname = Setup.gibBildname(g);
-            aktuellerGegenstand = 0; //hmmmmm
-            view.zeigeAusruestungGegenstandBild(bildname); //in Model?
-        }
-        //zB aufnehmen Gegenstand, oder Angreifen
+        // Gegenstand g = model.gibGegenstandAnPosition();
+        // if (g==null) return;
+        // boolean geklappt = model.gibFigur().nimmGegenstandAuf(g);
+        // if (geklappt) {
+            // model.entferneGegenstandAnPosition();            
+            // String bildname = crawlergame.Setup.gibBildname(g);
+            // aktuellerGegenstand = 0; //hmmmmm
+            // view.zeigeAusruestungGegenstandBild(bildname); //in Model?
+        // }
+        // //zB aufnehmen Gegenstand, oder Angreifen
 
     }
 
@@ -47,7 +35,7 @@ public class DungeonControllerConcrete implements DungeonController
 
     public void empfangeRucksackGegenstand() {
         Gegenstand g = null;
-        g = model.gibAusRucksack(aktuellerGegenstand);
+        g = model.gibFigur().gibAusRucksack(aktuellerGegenstand);
         if (g==null) return;
         view.zeigeAusruestungGegenstandBeschreibung(g.beschreibung);        
         //ausruesten?
@@ -55,36 +43,36 @@ public class DungeonControllerConcrete implements DungeonController
         if (g instanceof Waffe) {
             entferneAusgewaehltesRucksack();
             empfangeRucksackDrop();
-            model.setzeWaffe((Waffe)g);
+            model.gibFigur().setzeWaffe((Waffe)g);
         }
     }
-    
+
     private void entferneAusgewaehltesRucksack() {
-        Gegenstand g = model.gibAusRucksack(aktuellerGegenstand);
+        Gegenstand g = model.gibFigur().gibAusRucksack(aktuellerGegenstand);
         if (g==null) return;    
-        model.entferneAusRucksack(aktuellerGegenstand); //blaettern?
+        model.gibFigur().entferneAusRucksack(aktuellerGegenstand); //blaettern?
     }
 
     public void empfangeRucksackDrop() {
-        Gegenstand g = model.gibAusRucksack(aktuellerGegenstand);
+        Gegenstand g = model.gibFigur().gibAusRucksack(aktuellerGegenstand);
         if (g==null) return;    
-        model.entferneAusRucksack(aktuellerGegenstand); //blaettern?
+        model.gibFigur().entferneAusRucksack(aktuellerGegenstand); //blaettern?
         model.setzeGegenstandAnPosition(g);
-        
+
         aktuellerGegenstand = 0; //hmmmmmm
-        
+
     }
 
     public void empfangeRucksackZurueck() {
         aktuellerGegenstand--;
         if (aktuellerGegenstand<0) aktuellerGegenstand = 0;
         Gegenstand g = null;
-        g = model.gibAusRucksack(aktuellerGegenstand);
+        g = model.gibFigur().gibAusRucksack(aktuellerGegenstand);
         if (g==null) {
             view.zeigeAusruestungGegenstandBild("images/nichts.png");        
             return;
         }
-        view.zeigeAusruestungGegenstandBild(Setup.gibBildname(g));        
+        view.zeigeAusruestungGegenstandBild(g.gibBildname());        
         view.zeigeAusruestungGegenstandName(g.name);        
     }
 
@@ -93,12 +81,12 @@ public class DungeonControllerConcrete implements DungeonController
         int max = 9;
         if (aktuellerGegenstand>max) aktuellerGegenstand = max;
         Gegenstand g = null;
-        g = model.gibAusRucksack(aktuellerGegenstand);
+        g = model.gibFigur().gibAusRucksack(aktuellerGegenstand);
         if (g==null) {
             view.zeigeAusruestungGegenstandBild("images/nichts.png");        
             return;
         }
-        view.zeigeAusruestungGegenstandBild(Setup.gibBildname(g));        
+        view.zeigeAusruestungGegenstandBild(g.gibBildname());        
         view.zeigeAusruestungGegenstandName(g.name);        
     }
 
@@ -106,6 +94,15 @@ public class DungeonControllerConcrete implements DungeonController
     }
 
     public void empfangeFigurButton(int index) {
+    }
+
+        public String gibBildname(char c) {
+        switch (c) {
+            case 'c': return "coin.png";
+            case 'w': return "sword.png";
+                // case 'c': return "figur.png";
+        }
+        return "nichts.png";
     }
 
 }

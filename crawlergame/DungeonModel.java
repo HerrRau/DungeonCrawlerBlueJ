@@ -21,7 +21,7 @@ public interface DungeonModel
 
     public void anfang();
     
-    public void setzeGegenstand(GEGENSTAND g, int posx, int posy);
+    public void setzeGegenstand(int posx, int posy, GEGENSTAND g);
 
     // Gegenstand gibAusRucksack(int i);
 

@@ -7,28 +7,25 @@ public class DungeonModelSuS extends DungeonModelAbstract
     public DungeonModelSuS()
     {
         //startbr machen ähnlich wie Figur startbar ist
-        
-        
-        //setupLevel();
+
+        setupLevel();
     }
-    
+
     public void zeigeLevel() {
         updateViewBewegung();
     }
-    
+
     public void setzeFigur (Figur f) {
         figur = f;
-    }
-    
-    
-    public Figur gibFigur () {
-         return figur;         
-    }
-     
-     // public void setzeWaffe(Waffe w) {
-         // figur.setzeWaffe(w);
-     // }
+    }    
 
+    public Figur gibFigur () {
+        return figur;         
+    }
+
+    // public void setzeGegenstand(Gegenstand g, int x, int y) {
+        // super.setzeGegenstand(x,y,g);
+    // }
 
     void setupLevel()  {
         char [][] level;
@@ -50,10 +47,8 @@ public class DungeonModelSuS extends DungeonModelAbstract
         level[3][2] = '-';
         level[3][3] = '-';
         level[1][0] = '1';
-
-        //setzeLevel(level, 0, 1, 'N');
+        setzeLevel(level, 0, 1, 'N');
 
     }    
 
-    
 }

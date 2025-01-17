@@ -18,19 +18,19 @@ public abstract class DungeonControllerAbstract implements DungeonController
         view = v;
     }
 
-    public void empfangeBewegungVorwaerts() {
+    private void empfangeBewegungVorwaerts() {
         if (model.canGoForward()) model.goForward();
     }
 
-    public void empfangeBewegungDreheLinks() {
+    private void empfangeBewegungDreheLinks() {
         model.turnLeft();        
     }
 
-    public void empfangeBewegungDreheRechts() {
+    private void empfangeBewegungDreheRechts() {
         model.turnRight();
     }
 
-    public void empfangeBewegungJa() {
+    private void empfangeBewegungJa() {
         // Gegenstand g = model.gibGegenstandAnPosition();
         // if (g==null) return;
         // boolean geklappt = model.nimmGegenstand(g);
@@ -44,10 +44,10 @@ public abstract class DungeonControllerAbstract implements DungeonController
 
     }
 
-    public void empfangeBewegungNein() {
+    private void empfangeBewegungNein() {
     }
 
-    public void empfangeRucksackGegenstand() {
+    private void empfangeRucksackGegenstand() {
         // Gegenstand g = null;
         // g = model.gibAusRucksack(aktuellerGegenstand);
         // if (g==null) return;
@@ -67,7 +67,7 @@ public abstract class DungeonControllerAbstract implements DungeonController
         // model.entferneAusRucksack(aktuellerGegenstand); //blaettern?
     }
 
-    public void empfangeRucksackDrop() {
+    private void empfangeRucksackDrop() {
         // Gegenstand g = model.gibAusRucksack(aktuellerGegenstand);
         // if (g==null) return;    
         // model.entferneAusRucksack(aktuellerGegenstand); //blaettern?
@@ -77,7 +77,7 @@ public abstract class DungeonControllerAbstract implements DungeonController
 
     }
 
-    public void empfangeRucksackZurueck() {
+    private void empfangeRucksackZurueck() {
         // aktuellerGegenstand--;
         // if (aktuellerGegenstand<0) aktuellerGegenstand = 0;
         // Gegenstand g = null;
@@ -90,7 +90,7 @@ public abstract class DungeonControllerAbstract implements DungeonController
         // view.zeigeAusruestungGegenstandName(g.name);        
     }
 
-    public void empfangeRucksackVor() {
+    private void empfangeRucksackVor() {
         // aktuellerGegenstand++;
         // int max = 9;
         // if (aktuellerGegenstand>max) aktuellerGegenstand = max;
@@ -104,61 +104,26 @@ public abstract class DungeonControllerAbstract implements DungeonController
         // view.zeigeAusruestungGegenstandName(g.name);        
     }
 
-    public void empfangeFigurWaehleKoerperteil(int index) {
+    private void empfangeFigurWaehleKoerperteil(int index) {
     }
 
-    public void empfangeFigurButton(int index) {
+    private void empfangeFigurButton(int index) {
     }
 
-    public String gibBildname(char c) {
-        return "nichts.png";
-    }
-
-    public void empfangeWunsch0(int nummer) {
-        switch(nummer) {
-            case 0: empfangeFigurWaehleKoerperteil(nummer); break;
-            case 1: empfangeFigurWaehleKoerperteil(nummer); break;
-            case 2: empfangeFigurWaehleKoerperteil(nummer); break;
-            case 3: empfangeFigurWaehleKoerperteil(nummer); break;
-            case 4: empfangeFigurWaehleKoerperteil(nummer); break;
-            case 5: empfangeFigurWaehleKoerperteil(nummer); break;
-            case 6: empfangeFigurWaehleKoerperteil(nummer); break;
-            case 7: empfangeFigurButton(0); break;
-
-        }        
-    }
-
-    public void empfangeWunsch1(int nummer) {
-        switch(nummer) {
-            case 0: empfangeRucksackZurueck(); break;
-            case 1: empfangeRucksackGegenstand(); break;
-            case 2: empfangeRucksackVor(); break;
-            case 3: empfangeRucksackDrop(); break;
-        }        
-    }
-
-    public void empfangeWunsch2(int nummer) {
-        switch (nummer) {
-            case 0: empfangeBewegungVorwaerts(); break;
-            case 1: empfangeBewegungDreheLinks(); break;
-            case 2: empfangeBewegungDreheRechts(); break;
-            case 3: empfangeBewegungJa(); break;
-            case 4: empfangeBewegungNein(); break;
-        }        
-    }
+    public abstract String gibBildname(char c);
 
     public void empfangeWunsch(int view, int nummer) {
         if (view == 0) // Figur
         {
             switch(nummer) {
-                case 0: empfangeFigurWaehleKoerperteil(nummer); break;
-                case 1: empfangeFigurWaehleKoerperteil(nummer); break;
-                case 2: empfangeFigurWaehleKoerperteil(nummer); break;
-                case 3: empfangeFigurWaehleKoerperteil(nummer); break;
-                case 4: empfangeFigurWaehleKoerperteil(nummer); break;
-                case 5: empfangeFigurWaehleKoerperteil(nummer); break;
-                case 6: empfangeFigurWaehleKoerperteil(nummer); break;
-                case 7: empfangeFigurButton(0); break;
+                // case 0: empfangeFigurWaehleKoerperteil(nummer); break;
+                // case 1: empfangeFigurWaehleKoerperteil(nummer); break;
+                // case 2: empfangeFigurWaehleKoerperteil(nummer); break;
+                // case 3: empfangeFigurWaehleKoerperteil(nummer); break;
+                // case 4: empfangeFigurWaehleKoerperteil(nummer); break;
+                // case 5: empfangeFigurWaehleKoerperteil(nummer); break;
+                // case 6: empfangeFigurWaehleKoerperteil(nummer); break;
+                // case 7: empfangeFigurButton(0); break;
 
             }
 
@@ -166,10 +131,10 @@ public abstract class DungeonControllerAbstract implements DungeonController
         else if (view == 1) // Ausruestung
         {
             switch(nummer) {
-                case 0: empfangeRucksackZurueck(); break;
-                case 1: empfangeRucksackGegenstand(); break;
-                case 2: empfangeRucksackVor(); break;
-                case 3: empfangeRucksackDrop(); break;
+                // case 0: empfangeRucksackZurueck(); break;
+                // case 1: empfangeRucksackGegenstand(); break;
+                // case 2: empfangeRucksackVor(); break;
+                // case 3: empfangeRucksackDrop(); break;
             }
         }
         if (view == 2) // Bewegung

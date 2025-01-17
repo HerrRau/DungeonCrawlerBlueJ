@@ -308,16 +308,13 @@ public class JPanelBewegung extends JPanel
 
         if (x<miniDungeon[depth].length/2) //links der figur
         {
-            //xpos anpassen
-            xpos = xpos - (int)blockSizeX [depth];
-            return;
+            xpos = xpos - (int)blockSizeX [depth]/2;
         }
         else if (x>miniDungeon[depth].length/2) //rechts der figur
         {            
-            //xpos anpassen
-            return;
+            xpos = xpos + (int)blockSizeX [depth]/2;
         }        
-        if (depth == miniDungeon.length-1) // auf der figur
+        if (true || depth == miniDungeon.length-1) // auf der figur
         {
             if (true) {
                 g.drawImage(newImage, (int) xpos, (int) ypos, null);               

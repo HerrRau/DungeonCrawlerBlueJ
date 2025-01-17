@@ -1,16 +1,17 @@
 
 public class DungeonControllerConcrete extends crawlergame.DungeonControllerAbstract
 {
-    
+
     DungeonModelSuS model;
 
     public DungeonControllerConcrete()
     {
     }
 
-    // public void empfangeWunsch(int view, int nummer) {
-        
-    // }
+    public void empfangeWunsch(int view, int nummer) {
+        if (view == 2) super.empfangeWunsch(view, nummer);   
+        else System.out.println("Wunsch: "+view+", "+nummer);
+    }
 
     void setzeModel(DungeonModelSuS m)  {
         model = m;    
@@ -21,10 +22,10 @@ public class DungeonControllerConcrete extends crawlergame.DungeonControllerAbst
         // if (g==null) return;
         // boolean geklappt = model.gibFigur().nimmGegenstandAuf(g);
         // if (geklappt) {
-            // model.entferneGegenstandAnPosition();            
-            // String bildname = crawlergame.Setup.gibBildname(g);
-            // aktuellerGegenstand = 0; //hmmmmm
-            // view.zeigeAusruestungGegenstandBild(bildname); //in Model?
+        // model.entferneGegenstandAnPosition();            
+        // String bildname = crawlergame.Setup.gibBildname(g);
+        // aktuellerGegenstand = 0; //hmmmmm
+        // view.zeigeAusruestungGegenstandBild(bildname); //in Model?
         // }
         // //zB aufnehmen Gegenstand, oder Angreifen
 
@@ -90,13 +91,8 @@ public class DungeonControllerConcrete extends crawlergame.DungeonControllerAbst
         view.zeigeAusruestungGegenstandName(g.name);        
     }
 
-    public void empfangeFigurWaehleKoerperteil(int index) {
-    }
-
-    public void empfangeFigurButton(int index) {
-    }
-
-        public String gibBildname(char c) {
+    // USED BY JPANEL
+    @Override public String gibBildname(char c) {
         switch (c) {
             case 'c': return "coin.png";
             case 'w': return "sword.png";

@@ -25,8 +25,8 @@ public abstract class DungeonModelAbstract implements DungeonModel
         erzeugerAusschnitt = new AusschnittErzeuger(this);
         erzeugerExample = new ExampleErzeuger(this);
         setzeLevel(erzeugerExample.erzeugeDungeonLeer(10), 1, 1, 'N');
-        //erzeugerExample.fillExampleSimple();
-        erzeugerExample.fillExample();
+        erzeugerExample.fillExampleSimple();
+        // erzeugerExample.fillExample();
     }
 
     //################# View

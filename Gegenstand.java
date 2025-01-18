@@ -3,7 +3,7 @@ public class Gegenstand extends GEGENSTAND
 {
     String name;
     String beschreibung;
-    String bildname;
+    private String bildname;
 
     public Gegenstand(String name, String beschreibung)  {
         this.name = name;

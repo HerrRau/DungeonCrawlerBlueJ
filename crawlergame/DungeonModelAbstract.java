@@ -158,17 +158,7 @@ public abstract class DungeonModelAbstract implements DungeonModel
         this.facing = facing;
     }
 
-    //################# Setter
- 
-
-    void setCoin(int x, int y) {
-        // setzeGegenstand(x,y, new Muenze());
-        //dungeon[y][x] = Setup.COIN;        
-    }
-
-    void setWeapon(int x, int y) {
-        // setzeGegenstand(x,y, new Waffe());
-    }
+    //################# Setter 
 
     private void set(int x, int y, char c) {
         dungeon[y][x] = c;
@@ -219,14 +209,14 @@ public abstract class DungeonModelAbstract implements DungeonModel
         set(x,y, g.gibKuerzel());
     }
 
-    public GEGENSTAND gibGegenstandAnPosition() {
+    public GEGENSTAND gibGegenstandAnAktuellerPosition() {
         return gegenstaende[ypos][xpos];
         // char c = get(xpos, ypos);
         // if (c==Setup.EMPTY || c==Setup.BLOCK) return null;        
         //return Setup.gibGegenstand(c); // heisst: alle sind generisch
     }
 
-    public void entferneGegenstandAnPosition() {
+    public void entferneGegenstandAnAktuellerPosition() {
         set(xpos, ypos, Setup.EMPTY);
         gegenstaende[ypos][xpos] = null;
         updateViewBewegung();

@@ -16,7 +16,7 @@ public class Figur extends ModelSender //crawlergame.Figur
     int geschicklichkeit;
     
     public Figur() {
-        rucksack = new Gegenstand[10];
+       rucksack = new Gegenstand[10];
     }
 
     public Gegenstand gibAusRucksack(int i) {

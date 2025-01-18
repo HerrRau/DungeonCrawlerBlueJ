@@ -27,11 +27,11 @@ public interface DungeonModel
 
     // void entferneAusRucksack(int i);
 
-    // Gegenstand gibGegenstandAnPosition();
+    GEGENSTAND gibGegenstandAnAktuellerPosition();
 
     // boolean nimmGegenstand(Gegenstand g);
 
-    // void entferneGegenstandAnPosition();
+    void entferneGegenstandAnAktuellerPosition();
 
     // void setzeGegenstandAnPosition(Gegenstand g);
 

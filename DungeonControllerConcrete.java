@@ -2,94 +2,104 @@
 public class DungeonControllerConcrete extends crawlergame.DungeonControllerAbstract
 {
 
-    DungeonModelSuS model;
+    //DungeonModelSuS model;
 
     public DungeonControllerConcrete()
     {
     }
 
     public void empfangeWunsch(int view, int nummer) {
-        if (view == 2) super.empfangeWunsch(view, nummer);   
-        else System.out.println("Wunsch: "+view+", "+nummer);
+        System.out.println("DCC Wunsch: "+view+", "+nummer);
+
+        if (view == 2) {
+            if (nummer == 3) {
+                empfangeBewegungJa();
+            }
+            else {
+                super.empfangeWunsch(view, nummer);   
+            }
+        }
+        else {
+            super.empfangeWunsch(view, nummer);   
+        }
     }
 
-    void setzeModel(DungeonModelSuS m)  {
-        model = m;    
-    }
+    // void setzeModel(DungeonModelSuS m)  {
+    // model = m;    
+    // }
 
-    public void empfangeBewegungJa() {
-        // Gegenstand g = model.gibGegenstandAnPosition();
-        // if (g==null) return;
-        // boolean geklappt = model.gibFigur().nimmGegenstandAuf(g);
-        // if (geklappt) {
-        // model.entferneGegenstandAnPosition();            
-        // String bildname = crawlergame.Setup.gibBildname(g);
-        // aktuellerGegenstand = 0; //hmmmmm
-        // view.zeigeAusruestungGegenstandBild(bildname); //in Model?
-        // }
+    private void empfangeBewegungJa() {
+        Gegenstand g = (Gegenstand) model.gibGegenstandAnAktuellerPosition();
+        if (g==null) return;
+        boolean geklappt = ((DungeonModelSuS)model).gibFigur().nimmGegenstandAuf(g);
+        if (geklappt) {
+            model.entferneGegenstandAnAktuellerPosition();             
+            aktuellerGegenstand = 0; //hmmmmm            
+            view.zeigeAusruestungGegenstandBild(g.gibBildname()); //in Model?
+        }
         // //zB aufnehmen Gegenstand, oder Angreifen
 
     }
 
-    public void empfangeBewegungNein() {
+    private void empfangeBewegungNein() {
     }
 
-    public void empfangeRucksackGegenstand() {
-        Gegenstand g = null;
-        g = model.gibFigur().gibAusRucksack(aktuellerGegenstand);
-        if (g==null) return;
-        view.zeigeAusruestungGegenstandBeschreibung(g.beschreibung);        
-        //ausruesten?
-        //anwenden?
-        if (g instanceof Waffe) {
-            entferneAusgewaehltesRucksack();
-            empfangeRucksackDrop();
-            model.gibFigur().setzeWaffe((Waffe)g);
-        }
-    }
+    // public void empfangeRucksackGegenstand() {
+    // Gegenstand g = null;
+    // g = model.gibFigur().gibAusRucksack(aktuellerGegenstand);
+    // if (g==null) return;
+    // view.zeigeAusruestungGegenstandBeschreibung(g.beschreibung);        
+    // //ausruesten?
+    // //anwenden?
+    // if (g instanceof Waffe) {
+    // entferneAusgewaehltesRucksack();
+    // empfangeRucksackDrop();
+    // model.gibFigur().setzeWaffe((Waffe)g);
+    // }
+    // }
 
-    private void entferneAusgewaehltesRucksack() {
-        Gegenstand g = model.gibFigur().gibAusRucksack(aktuellerGegenstand);
-        if (g==null) return;    
-        model.gibFigur().entferneAusRucksack(aktuellerGegenstand); //blaettern?
-    }
+    // private void entferneAusgewaehltesRucksack() {
+    // Gegenstand g = model.gibFigur().gibAusRucksack(aktuellerGegenstand);
+    // if (g==null) return;    
+    // model.gibFigur().entferneAusRucksack(aktuellerGegenstand); //blaettern?
+    // }
 
-    public void empfangeRucksackDrop() {
-        Gegenstand g = model.gibFigur().gibAusRucksack(aktuellerGegenstand);
-        if (g==null) return;    
-        model.gibFigur().entferneAusRucksack(aktuellerGegenstand); //blaettern?
-        model.setzeGegenstandAnPosition(g);
+    // public void empfangeRucksackDrop() {
+    // Gegenstand g = model.gibFigur().gibAusRucksack(aktuellerGegenstand);
+    // if (g==null) return;    
+    // model.gibFigur().entferneAusRucksack(aktuellerGegenstand); //blaettern?
+    // model.setzeGegenstandAnPosition(g);
 
-        aktuellerGegenstand = 0; //hmmmmmm
+    // aktuellerGegenstand = 0; //hmmmmmm
 
-    }
+    // }
 
-    public void empfangeRucksackZurueck() {
-        aktuellerGegenstand--;
-        if (aktuellerGegenstand<0) aktuellerGegenstand = 0;
-        Gegenstand g = null;
-        g = model.gibFigur().gibAusRucksack(aktuellerGegenstand);
-        if (g==null) {
-            view.zeigeAusruestungGegenstandBild("images/nichts.png");        
-            return;
-        }
-        view.zeigeAusruestungGegenstandBild(g.gibBildname());        
-        view.zeigeAusruestungGegenstandName(g.name);        
-    }
+    // public void empfangeRucksackZurueck() {
+    // aktuellerGegenstand--;
+    // if (aktuellerGegenstand<0) aktuellerGegenstand = 0;
+    // Gegenstand g = null;
+    // g = model.gibFigur().gibAusRucksack(aktuellerGegenstand);
+    // if (g==null) {
+    // view.zeigeAusruestungGegenstandBild("images/nichts.png");        
+    // return;
+    // }
+    // view.zeigeAusruestungGegenstandBild(g.gibBildname());        
+    // view.zeigeAusruestungGegenstandName(g.name);        
+    // }
 
-    public void empfangeRucksackVor() {
-        aktuellerGegenstand++;
-        int max = 9;
-        if (aktuellerGegenstand>max) aktuellerGegenstand = max;
-        Gegenstand g = null;
-        g = model.gibFigur().gibAusRucksack(aktuellerGegenstand);
-        if (g==null) {
-            view.zeigeAusruestungGegenstandBild("images/nichts.png");        
-            return;
-        }
-        view.zeigeAusruestungGegenstandBild(g.gibBildname());        
-        view.zeigeAusruestungGegenstandName(g.name);        
-    }
+    // public void empfangeRucksackVor() {
+    // aktuellerGegenstand++;
+    // int max = 9;
+    // if (aktuellerGegenstand>max) aktuellerGegenstand = max;
+    // Gegenstand g = null;
+    // g = model.gibFigur().gibAusRucksack(aktuellerGegenstand);
+    // if (g==null) {
+    // view.zeigeAusruestungGegenstandBild("images/nichts.png");        
+    // return;
+    // }
+    // view.zeigeAusruestungGegenstandBild(g.gibBildname());        
+    // view.zeigeAusruestungGegenstandName(g.name);        
+    // }
 
     // USED BY JPANEL
     @Override public String gibBildname(char c) {

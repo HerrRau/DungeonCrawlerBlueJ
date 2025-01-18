@@ -25,7 +25,7 @@ public class Main
 
         f.setzeWaffe( new Waffe() );
         
-        model.setzeGegenstand( 2,2,new Muenze());
+        //model.setzeGegenstand( 2,2,new Muenze());
         start();
     }
 

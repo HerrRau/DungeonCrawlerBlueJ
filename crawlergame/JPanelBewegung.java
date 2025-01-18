@@ -306,28 +306,20 @@ public class JPanelBewegung extends JPanel
         int ypos = canvasSizeY - newImage.getHeight(null) - frameThicknessY; //wg border, ist jetzt: ganz unten
         ypos = canvasSizeY/2; //eher:Mitte
 
-        if (x<miniDungeon[depth].length/2) //links der figur
-        {
+        if (x<miniDungeon[depth].length/2) { //links der figur
             xpos = xpos - (int)blockSizeX [depth]/2;
+            newWidth = (int) (newWidth * 0.7);
         }
-        else if (x>miniDungeon[depth].length/2) //rechts der figur
-        {            
+        else if (x>miniDungeon[depth].length/2) { //rechts der figur
             xpos = xpos + (int)blockSizeX [depth]/2;
+            newWidth = (int) (newWidth * 0.7);
         }        
-        if (true || depth == miniDungeon.length-1) // auf der figur
-        {
-            if (true) {
-                g.drawImage(newImage, (int) xpos, (int) ypos, null);               
-                return;
-            }
+        if (x==miniDungeon[depth].length/2 && depth == miniDungeon.length-1) {
             jButton1.setVisible(true);
             jButton1.setBounds((int) xpos, (int) ypos, newWidth, newWidth*1);
             jButton1.setIcon( new ImageIcon (newImage));
-
-        } 
-        else // vor der figur
-        {
-            g.drawImage(newImage, (int) xpos, (int) ypos, null);                
+        } else {
+            g.drawImage(newImage, (int) xpos, (int) ypos, null);               
         }
 
     }

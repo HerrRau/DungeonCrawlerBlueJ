@@ -53,7 +53,7 @@ public class ExampleErzeuger
         model.setBlock(7,6);
         model.setBlock(7,8);
         model.setBlock(8,1);
-        model.setCoin(5,4);
+        // model.setCoin(5,4);
         // setWeapon(2,2);
     }
 
@@ -65,8 +65,8 @@ public class ExampleErzeuger
         model.setBlock(6,6);
         model.setBlock(5,5);
         model.setBlock(5,4);
-        model.setCoin(3,4);
-        model.setCoin(7,7);
+        // model.setCoin(3,4);
+        // model.setCoin(7,7);
     }
 
     private void fillRandom() {

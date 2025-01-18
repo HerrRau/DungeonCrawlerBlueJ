@@ -43,10 +43,10 @@ public class DungeonModelSuS extends DungeonModelAbstract
         level[2][2] = '-';
         level[2][3] = '-';
         level[3][0] = '-';
-        level[3][1] = '-';
+        level[3][1] = 'c';
         level[3][2] = '-';
-        level[3][3] = '-';
-        level[1][0] = '1';
+        level[3][3] = 'w';
+        level[1][0] = 'X';
         setzeLevel(level, 0, 1, 'N');
 
     }    

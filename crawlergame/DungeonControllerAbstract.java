@@ -3,7 +3,7 @@ package crawlergame;
 public abstract class DungeonControllerAbstract implements DungeonController
 {
     protected DungeonView view;
-    protected DungeonModel model;
+    public DungeonModel model;
     protected int aktuellerGegenstand;
 
     public DungeonControllerAbstract()

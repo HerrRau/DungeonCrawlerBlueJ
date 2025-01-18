@@ -1,9 +1,6 @@
-
+import crawlergame.Setup;
 public class DungeonControllerConcrete extends crawlergame.DungeonControllerAbstract
 {
-
-    //DungeonModelSuS model;
-
     public DungeonControllerConcrete()
     {
     }
@@ -16,24 +13,24 @@ public class DungeonControllerConcrete extends crawlergame.DungeonControllerAbst
 
         if (view == 2) {
             if (nummer == 3) {
-                empfangeBewegungJa();
+                nimmGegenstand();
             }
         }
         else if (view == 1) {
             if (nummer == 0) {
                 empfangeRucksackZurueck();
             }
-            if (nummer == 2) {
+            else if (nummer == 2) {
                 empfangeRucksackVor();                               
             }
+            else if (nummer == 3) {
+                empfangeRucksackDrop();
+            }
+
         }
     }
 
-    // void setzeModel(DungeonModelSuS m)  {
-    // model = m;     
-    // }
-
-    private void empfangeBewegungJa() {
+    private void nimmGegenstand() {
         Gegenstand g = (Gegenstand) model.gibGegenstandAnAktuellerPosition();
         System.out.println("DCC "+g);
         if (g==null) return;
@@ -65,42 +62,43 @@ public class DungeonControllerConcrete extends crawlergame.DungeonControllerAbst
     // }
 
     // private void entferneAusgewaehltesRucksack() {
-    // Gegenstand g = model.gibFigur().gibAusRucksack(aktuellerGegenstand);
-    // if (g==null) return;    
-    // model.gibFigur().entferneAusRucksack(aktuellerGegenstand); //blaettern?
+        // Gegenstand g = ((DungeonModelSuS)model).gibFigur().gibAusRucksack(aktuellerGegenstand);
+        // if (g==null) return;    
+        // ((DungeonModelSuS)model).gibFigur().entferneAusRucksack(aktuellerGegenstand); //blaettern?
     // }
 
-    // public void empfangeRucksackDrop() {
-    // Gegenstand g = model.gibFigur().gibAusRucksack(aktuellerGegenstand);
-    // if (g==null) return;    
-    // model.gibFigur().entferneAusRucksack(aktuellerGegenstand); //blaettern?
-    // model.setzeGegenstandAnPosition(g);
+    private void empfangeRucksackDrop() {
+        Gegenstand g = ((DungeonModelSuS)model).gibFigur().gibAusRucksack(aktuellerGegenstand);
+        if (g==null) return;    
+        ((DungeonModelSuS)model).gibFigur().entferneAusRucksack(aktuellerGegenstand); //blaettern?
+        model.setzeGegenstandAnAktuellerPosition(g);
 
-    // aktuellerGegenstand = 0; //hmmmmmm
+        aktuellerGegenstand = 0; //hmmmmmm
+        view.zeigeAusruestungGegenstandBild("nichts.png");        //hmmm
 
-    // }
+    }
 
-    public void empfangeRucksackZurueck() {
+    private void empfangeRucksackZurueck() {
         aktuellerGegenstand--;
         if (aktuellerGegenstand<0) aktuellerGegenstand = 0;
         Gegenstand g = null;
         g = ((DungeonModelSuS)model).gibFigur().gibAusRucksack(aktuellerGegenstand);
         if (g==null) {
-            view.zeigeAusruestungGegenstandBild("images/nichts.png");        
+            view.zeigeAusruestungGegenstandBild("nichts.png");        
             return;
         }
         view.zeigeAusruestungGegenstandBild(g.gibBildname());        
         view.zeigeAusruestungGegenstandName(g.name);        
     }
 
-    public void empfangeRucksackVor() {
+    private void empfangeRucksackVor() {
         aktuellerGegenstand++;
         int max = 9;
         if (aktuellerGegenstand>max) aktuellerGegenstand = max;
         Gegenstand g = null;
         g = ((DungeonModelSuS)model).gibFigur().gibAusRucksack(aktuellerGegenstand);
         if (g==null) {
-            view.zeigeAusruestungGegenstandBild("images/nichts.png");        
+            view.zeigeAusruestungGegenstandBild("nichts.png");        
             return;
         }
         view.zeigeAusruestungGegenstandBild(g.gibBildname());        

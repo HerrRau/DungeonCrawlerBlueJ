@@ -42,7 +42,14 @@ public class DungeonRucksackVorzimmer extends DungeonfensterRucksack implements 
 
     public void drawImage(String bildname) {
         bildname = Setup.imagePath + bildname;
+        
+        // System.out.println("DRV "+bildname);
+        
         ImageIcon icon = new ImageIcon(getClass().getResource(bildname));       
+
+        //icon = GraphicsHelper.createImageIcon(bildname);
+
+        
         bItem1.setIcon(icon);
     }
 

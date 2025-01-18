@@ -236,12 +236,11 @@ public abstract class DungeonModelAbstract implements DungeonModel
         updateViewBewegung();
     }
 
-    public void setzeGegenstandAnPosition(GEGENSTAND g) {
+    public void setzeGegenstandAnAktuellerPosition(GEGENSTAND g) {
         char c = g.gibKuerzel();
         set(xpos, ypos, c);
         gegenstaende[ypos][xpos] = g;
         updateViewBewegung();
-        //updateViewRucksack();
     }
 
     public void sendeNachricht(String s) {

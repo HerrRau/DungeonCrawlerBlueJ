@@ -9,6 +9,7 @@ public class Gegenstand extends GEGENSTAND
     public Gegenstand(String name, String beschreibung)  {
         this.name = name;
         this.beschreibung = beschreibung;
+        // bildname = "nichts.png";
     }
 
     public String gibBildname() {

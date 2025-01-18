@@ -30,7 +30,7 @@ public class DungeonfensterFigur extends JFrame {
     protected JButton jButton6 = new JButton();
     protected JButton jButton7 = new JButton();
     private JLabel jLabel2 = new JLabel();
-    private ImageIcon jLabel2Icon = new ImageIcon(getClass().getResource("images/figur_hintergrund.png"));
+    private ImageIcon jLabel2Icon = new ImageIcon(getClass().getResource(Setup.imagePath + "figur_hintergrund.png"));
     private JButton jButton8 = new JButton();
   // end attributes
   

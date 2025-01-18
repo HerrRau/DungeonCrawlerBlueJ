@@ -88,7 +88,7 @@ public class DungeonControllerConcrete extends crawlergame.DungeonControllerAbst
             return;
         }
         view.zeigeAusruestungGegenstandBild(g.gibBildname());        
-        view.zeigeAusruestungGegenstandName(g.name);        
+        view.zeigeAusruestungGegenstandName(g.gibName());        
     }
 
     private void empfangeRucksackVor() {
@@ -102,7 +102,7 @@ public class DungeonControllerConcrete extends crawlergame.DungeonControllerAbst
             return;
         }
         view.zeigeAusruestungGegenstandBild(g.gibBildname());        
-        view.zeigeAusruestungGegenstandName(g.name);        
+        view.zeigeAusruestungGegenstandName(g.gibName());        
     }
 
     // USED BY JPANEL und DungenModelAbstract

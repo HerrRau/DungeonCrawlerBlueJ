@@ -3,7 +3,7 @@ import java.awt.*;
 
 public class Setup
 {
-    public static boolean useTestMode = false;
+    public static boolean useTestMode = true;
     public static Color backgroundColor = Color.WHITE;
 
     public final static char EMPTY = '-';

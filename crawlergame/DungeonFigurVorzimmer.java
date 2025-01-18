@@ -27,9 +27,22 @@ public class DungeonFigurVorzimmer extends DungeonfensterFigur implements Dungeo
     public void zeigeFigurNachricht(String name) {
     }
 
-    public void zeigeFigurKoerperteil(int u, String bildname) {
-    }
+    public void zeigeFigur(int i, String bildname) {
+        System.out.println("DFV: "+i);
+        ImageIcon icon = new ImageIcon(getClass().getResource(Setup.imagePath+bildname));       
+        JButton button = null;
+        switch(i) {
+            case 0: button = jButton1; break;
+            case 1: button = jButton2; break;
+            case 2: button = jButton3; break;
+            case 3: button = jButton4; break;
+            case 4: button = jButton5; break;
+            case 5: button = jButton6; break;
+            case 6: button = jButton7; break;
+        }
+        button.setIcon( resizeIcon(icon, button.getWidth(), button.getHeight()) );
 
+    }
     void zeigeAusruestung (int koerperteil) {
     }
 
@@ -76,11 +89,6 @@ public class DungeonFigurVorzimmer extends DungeonfensterFigur implements Dungeo
         // TODO add your code here
 
     } // end of jButton8_ActionPerformed
-
-    public void zeigeFigurWaffe(String bildname) {
-        ImageIcon icon = new ImageIcon(getClass().getResource(Setup.imagePath+bildname));       
-        jButton4.setIcon( resizeIcon(icon, jButton4.getWidth(), jButton4.getHeight()) );
-    }
 
     private static Icon resizeIcon(ImageIcon icon, int resizedWidth, int resizedHeight) {
         Image img = icon.getImage();  

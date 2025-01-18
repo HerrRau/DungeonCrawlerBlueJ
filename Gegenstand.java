@@ -2,18 +2,27 @@ import crawlergame.*;
 
 public class Gegenstand extends GEGENSTAND
 {
-    String name;
-    String beschreibung;
+    private String name;
+    private String beschreibung;
     private String bildname;
+    private char kuerzel;
 
-    public Gegenstand(String name, String beschreibung)  {
+    public Gegenstand()  {
+        this.name = "Ein namenloses Ding.";
+        this.beschreibung = "Unbeschreiblich";
+        this.kuerzel = '?';
+        // this.bildname = "nichts";
+    }
+
+    public Gegenstand(String name, String beschreibung, String bildname, char kuerzel)  {
         this.name = name;
         this.beschreibung = beschreibung;
-        // bildname = "nichts.png";
+        this.bildname = bildname;
+        this.kuerzel = kuerzel;
     }
 
     public String gibBildname() {
-        return bildname; //evtl auf null ueberpruefen
+        return bildname;
     }
     
     // muss verwendet werden
@@ -21,9 +30,31 @@ public class Gegenstand extends GEGENSTAND
         bildname = s;
     }
 
+    public String gibBeschreibung() {
+        return beschreibung;
+    }
+    
+    // muss verwendet werden
+    public void setzeBeschreibung(String s) {
+        beschreibung = s;
+    }
+
+    public String gibName() {
+        return name;
+    }
+    
+    // muss verwendet werden
+    public void setzeName(String s) {
+        name = s;
+    }
+
     //muss ueberschrieben werden
     @Override public char gibKuerzel() {
-        return '?';
+        return kuerzel;
+    }
+
+    public void setzeKuerzel(char c) {
+        kuerzel = c;
     }
 
 }

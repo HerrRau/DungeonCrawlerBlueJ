@@ -6,8 +6,7 @@ public interface DungeonViewFigur
 
     void zeigeFigurNachricht(String name);
 
-    void zeigeFigurKoerperteil(int u, String bildname);
+    void zeigeFigur(int koerperteil, String bildname);
 
-    void zeigeFigurWaffe(String bildname);
 
 }

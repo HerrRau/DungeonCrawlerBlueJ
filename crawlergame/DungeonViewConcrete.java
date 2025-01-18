@@ -55,10 +55,8 @@ public class DungeonViewConcrete implements DungeonView
     public void zeigeFigurNachricht(String name) {
     }
 
-    public void zeigeFigurKoerperteil(int u, String bildname) {
+    public void zeigeFigur(int koerperteil, String bildname) {
+        view2.zeigeFigur(koerperteil, bildname);
     }
 
-    public void zeigeFigurWaffe(String bildname) {
-        view2.zeigeFigurWaffe(bildname);        
-    }
 }

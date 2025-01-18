@@ -17,6 +17,7 @@ public class Figur extends ModelSender //crawlergame.Figur
     
     public Figur() {
        rucksack = new Gegenstand[10];
+       setzeWaffe ( new Waffe() );
     }
 
     public Gegenstand gibAusRucksack(int i) {
@@ -39,7 +40,8 @@ public class Figur extends ModelSender //crawlergame.Figur
     
     public void setzeWaffe(Waffe w) {
         waffe = w;
-        gibAnsicht().zeigeFigurWaffe("sword.png");
+        gibAnsicht().zeigeFigur(3, "sword.png");
+        //gibAnsicht().zeigeFigur(3, w.gibBildname());
     }
     
     public Waffe gibWaffe() {

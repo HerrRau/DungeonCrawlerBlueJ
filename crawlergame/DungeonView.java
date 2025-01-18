@@ -23,8 +23,7 @@ public interface DungeonView extends DungeonViewBewegung, DungeonViewAusruestung
 
     // void zeigeFigurNachricht(String name);
 
-    // void zeigeFigurKoerperteil(int i, String bildname);
+    // void zeigeFigur(int i, String bildname);
 
-    // void zeigeFigurWaffe(String bildname);
 
 }

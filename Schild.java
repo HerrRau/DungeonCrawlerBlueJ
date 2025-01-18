@@ -1,4 +1,4 @@
-public class Schild
+public class Schild extends Gegenstand
 {
     public Schild()
     {

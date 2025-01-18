@@ -291,14 +291,18 @@ public class JPanelBewegung extends JPanel
     }
 
     void drawItem(int depth, int x, char type, Graphics g) {
-        String bilddatei = ((DungeonControllerAbstract)controller).gibStandardgegenstand(type).gibBildname();
+        GEGENSTAND geg = ((DungeonControllerAbstract)controller).gibStandardgegenstand(type);
+        String bildname = ((DungeonControllerAbstract)controller).gibStandardgegenstand(type).gibBildname();
         ImageIcon icon = null;
-        if (bilddatei==null) {
+        if (bildname==null) {
             System.out.println("Fehlender Bildname bei Objekt mit Kuerzel "+type);
             return;
         }
-        icon = GraphicsHelper.createImageIcon(bilddatei);
-        // icon = new ImageIcon(getClass().getResource(Setup.imagePath+bilddatei));            
+        // System.out.println(geg);
+        // System.out.println(geg.getImageURL());
+        // icon = GraphicsHelper.createImageIcon(bildname);
+        // icon = new ImageIcon(geg.getImageURL());
+        icon = new ImageIcon(Setup.getResource(bildname));
         int orgWidth = icon.getIconWidth();
         int orgHeight = icon.getIconHeight();
         int newWidth = (int) (blockSizeX[depth]/2);

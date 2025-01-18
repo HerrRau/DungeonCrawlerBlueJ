@@ -28,7 +28,12 @@ public class DungeonFigurVorzimmer extends DungeonfensterFigur implements Dungeo
     }
 
     public void zeigeFigur(int i, String bildname) {        
-        ImageIcon icon = GraphicsHelper.createImageIcon(bildname);       
+        ImageIcon icon = null;
+        if (false) {
+            icon = GraphicsHelper.createImageIcon(bildname);       
+        } else {
+            icon = new ImageIcon(Setup.getResource(bildname));            
+        }
         JButton button = null;
         switch(i) {
             case 0: button = jButton1; break;
@@ -42,6 +47,7 @@ public class DungeonFigurVorzimmer extends DungeonfensterFigur implements Dungeo
         button.setIcon( resizeIcon(icon, button.getWidth(), button.getHeight()) );
 
     }
+
     void zeigeAusruestung (int koerperteil) {
     }
 

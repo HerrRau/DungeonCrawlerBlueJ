@@ -10,6 +10,7 @@ public class ModelSender
 
     public ModelSender()
     {
+        Setup.setPath(this);
         if (Setup.useTestModeFigur) {
             ansichtFigur = new DungeonFigurVorzimmer();   
         }

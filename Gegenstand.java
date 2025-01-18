@@ -57,4 +57,5 @@ public class Gegenstand extends GEGENSTAND
         kuerzel = c;
     }
 
+
 }

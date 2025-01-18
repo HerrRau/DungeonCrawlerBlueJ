@@ -29,7 +29,7 @@ public class URLHelper
         return getURLRelative(o, filename);
     }    
 
-    private static URL getURLRelative(Object o, String filename) {
+    public static URL getURLRelative(Object o, String filename) {
         //Class cls = o.getClass().getEnclosingClass();
         Class cls = o.getClass();
         return cls.getResource(filename);

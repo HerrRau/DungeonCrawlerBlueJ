@@ -40,16 +40,14 @@ public class DungeonRucksackVorzimmer extends DungeonfensterRucksack implements 
         controller.receiveRequest(1, 3);
     } // end of bDrop1_ActionPerformed
 
-    public void drawImage(String bildname) {
-        // bildname = Setup.imagePath + bildname;
-        
-        // System.out.println("DRV "+bildname);
-        
-        ImageIcon icon = new ImageIcon(getClass().getResource(bildname));       
+    private void drawImage(String bildname) {
+        ImageIcon icon = null;
+        if (false) {
+            icon = new ImageIcon(getClass().getResource(bildname));       
+        } else {
+            icon = new ImageIcon(Setup.getResource(bildname));            
+        }
 
-        //icon = GraphicsHelper.createImageIcon(bildname);
-
-        
         bItem1.setIcon(icon);
     }
 

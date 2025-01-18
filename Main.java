@@ -11,6 +11,7 @@ public class Main
 
     public Main()
     {
+        Setup.setPath(this);
         model = new DungeonModelSuS();
 
         view = new DungeonViewConcrete();

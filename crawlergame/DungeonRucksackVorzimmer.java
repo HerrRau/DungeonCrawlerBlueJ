@@ -41,7 +41,7 @@ public class DungeonRucksackVorzimmer extends DungeonfensterRucksack implements 
     } // end of bDrop1_ActionPerformed
 
     public void drawImage(String bildname) {
-        bildname = Setup.imagePath + bildname;
+        // bildname = Setup.imagePath + bildname;
         
         // System.out.println("DRV "+bildname);
         

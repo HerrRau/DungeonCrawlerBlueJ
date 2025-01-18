@@ -1,4 +1,6 @@
 import crawlergame.*;
+import java.net.URL;
+import javax.swing.*;
 
 public class Main
 {
@@ -32,7 +34,6 @@ public class Main
     void start() 
     {
         model.begin();
-
     }
 
 }

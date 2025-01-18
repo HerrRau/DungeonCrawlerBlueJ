@@ -22,7 +22,7 @@ import java.awt.image.DataBufferByte;
 
 public class GraphicsHelper
 {
-    static boolean useCache = true;
+    static boolean useCache = false;
 
     static HashMap<String, Image> imagesCache = new HashMap<String, Image>();    
     static HashMap<String, ImageIcon> imageIconsCache = new HashMap<String, ImageIcon>();    
@@ -62,26 +62,22 @@ public class GraphicsHelper
      * Hilfsmethode zum sicheren Erzeugen eines ImageIcon aus einem Dateinamen.
      */
     public static ImageIcon createImageIcon(String filename) { 
-        if (useCache) {
-            ImageIcon iconOld = imageIconsCache.get(filename);
-            if (iconOld!=null) return iconOld;
-        }
-
+        
         URL url = URLHelper.getURL(filename);
         if (url != null) {
             ImageIcon icon = new ImageIcon(url);
-            if (useCache) {
-                imageIconsCache.put(filename, icon);
-            }
             return icon;
         }
         else {
-            System.out.println(filename);
-            System.out.println("Ein Bild unter diesem Namen existiert nicht, stattdessen wird ein leeres Bild erzeugt.");
-            return new ImageIcon(createFallbackImage());
+            //             System.out.println("Graphics Helper: Ein Bild '"+filename+"' existiert nicht, stattdessen wird ein leeres Bild erzeugt.");
+            System.out.println("GraphicsHelper: Ein Bild '"+filename+"' existiert nicht.");
+            return null;
+            //             return new ImageIcon(createFallbackImage());
         }
     }
 
+    
+    
     public static ImageIcon imageToImageIcon(Image image) {
         return new ImageIcon(image);
     }

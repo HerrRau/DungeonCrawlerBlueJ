@@ -27,8 +27,8 @@ public class DungeonFigurVorzimmer extends DungeonfensterFigur implements Dungeo
     public void zeigeFigurNachricht(String name) {
     }
 
-    public void zeigeFigur(int i, String bildname) {
-        ImageIcon icon = new ImageIcon(getClass().getResource(Setup.imagePath+bildname));       
+    public void zeigeFigur(int i, String bildname) {        
+        ImageIcon icon = GraphicsHelper.createImageIcon(bildname);       
         JButton button = null;
         switch(i) {
             case 0: button = jButton1; break;

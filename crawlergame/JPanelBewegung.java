@@ -297,7 +297,8 @@ public class JPanelBewegung extends JPanel
             System.out.println("Fehlender Bildname bei Objekt mit Kuerzel "+type);
             return;
         }
-        icon = new ImageIcon(getClass().getResource(Setup.imagePath+bilddatei));            
+        icon = GraphicsHelper.createImageIcon(bilddatei);
+        // icon = new ImageIcon(getClass().getResource(Setup.imagePath+bilddatei));            
         int orgWidth = icon.getIconWidth();
         int orgHeight = icon.getIconHeight();
         int newWidth = (int) (blockSizeX[depth]/2);

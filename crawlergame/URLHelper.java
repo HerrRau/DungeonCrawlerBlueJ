@@ -7,6 +7,11 @@ import java.io.InputStreamReader;
 
 public class URLHelper
 {
+    //////// one important change from original URLHelper, see below
+    // static String prefixURL = "";
+    static String prefixURL = "images/";
+    public static void setPrefixURL(String s) { prefixURL = s; }
+
     /*
      * ************************************* URL-Methoden *************************************
      */
@@ -30,9 +35,21 @@ public class URLHelper
         return cls.getResource(filename);
     }
 
-    public static URL getURL(String filename) {
-        return getURLAbsolute(filename);
+    // public static URL getURL(String filename) {
+        // return getURLAbsolute(filename);
+    // }
+    
+        public static URL getURL(String filename) {
+        filename = prefixURL+filename;
+        URL result = getURLAbsolute(filename);
+        if (result==null) {
+            System.out.println("URLHelper: can't find "+filename+ "\n"+result+"\n");
+        } else {
+            //System.out.println("URLHelper: file found at "+filename+ "\n"+result+"\n");
+        }
+        return result;
     }
+
 
     private static URL getURLAbsolute(String filename) {
         //         Class cls = new Object() {}.getClass();

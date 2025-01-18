@@ -15,10 +15,10 @@ public class DungeonViewConcrete implements DungeonView
         view1 = new DungeonBewegungVorzimmer();
     }
 
-    public void setzeController(DungeonController c) {
-        view1.setzeController(c);
-        view2.setzeController(c);
-        view3.setzeController(c);
+    public void setController(DungeonController c) {
+        view1.setController(c);
+        view2.setController(c);
+        view3.setController(c);
     }
 
     public void zeigeBewegungAusschnitt(char[][] miniDungeon, int xPosPlayer, int yPosPlayer) {

@@ -2,7 +2,7 @@ package crawlergame;
 
 public interface DungeonViewAusruestung
 {
-    void setzeController(DungeonController c);
+    void setController(DungeonController c);
 
     void zeigeAusruestungGegenstandBild(String bildname);
 

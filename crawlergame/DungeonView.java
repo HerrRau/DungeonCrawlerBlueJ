@@ -2,7 +2,7 @@ package crawlergame;
 
 public interface DungeonView extends DungeonViewBewegung, DungeonViewAusruestung, DungeonViewFigur
 {
-    // void setzeController(DungeonController c);
+    // void setController(DungeonController c);
 
     
     // void zeigeBewegungDungeon(char[][] miniDungeonTemp, int xPosPlayer, int yPosPlayer);

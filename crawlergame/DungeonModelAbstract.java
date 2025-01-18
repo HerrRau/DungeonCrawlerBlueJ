@@ -31,8 +31,8 @@ public abstract class DungeonModelAbstract implements DungeonModel
 
     //################# View
 
-    public void setzeView(DungeonView d) {
-        if (Setup.useTestMode) return;
+    @Override public void setView(DungeonView d) {
+        if (Setup.useTestModeFigur) return;
         view = d;
         // if (figur!=null)figur.setzeView(d);
     }
@@ -52,6 +52,7 @@ public abstract class DungeonModelAbstract implements DungeonModel
 
 
     //################# Bewegung
+
     final public void goForward() {
         //does not check if possible in itself
         //can go forward does that
@@ -194,7 +195,7 @@ public abstract class DungeonModelAbstract implements DungeonModel
     //
     //
 
-    final public void anfang() {
+    final public void begin() {
         updateViewBewegung();
     }
 
@@ -207,13 +208,6 @@ public abstract class DungeonModelAbstract implements DungeonModel
     // view.zeigeAusruestungGegenstandBild(s);
     // }
 
-    public int gibPosX() {
-        return xpos;
-    }
-
-    public int gibPosY() {
-        return ypos;
-    }
 
     // SuS    
     final public void setzeGegenstand(int x, int y, GEGENSTAND g) {
@@ -223,7 +217,7 @@ public abstract class DungeonModelAbstract implements DungeonModel
 
     public GEGENSTAND gibGegenstandAnAktuellerPosition() {
         GEGENSTAND g = gegenstaende[ypos][xpos]; 
-        System.out.println("DMA "+g+": "+xpos+","+ypos);
+        //System.out.println("DMA "+g+": "+xpos+","+ypos);
         return g;
         // char c = get(xpos, ypos);
         // if (c==Setup.EMPTY || c==Setup.BLOCK) return null;        

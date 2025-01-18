@@ -49,7 +49,7 @@ public class JPanelBewegung extends JPanel
 
     public void jButton1_ActionPerformed(ActionEvent evt) {
         // controller.empfangeBewegungJa();
-        controller.empfangeWunsch(2,3);
+        controller.receiveRequest(2,3);
     } // end of jButton1_ActionPerformed
 
     @Override
@@ -291,7 +291,7 @@ public class JPanelBewegung extends JPanel
     }
 
     void drawItem(int depth, int x, char type, Graphics g) {
-        String bilddatei = ((DungeonControllerAbstract)controller).gibGegenstand(type).gibBildname();
+        String bilddatei = ((DungeonControllerAbstract)controller).gibStandardgegenstand(type).gibBildname();
         ImageIcon icon = null;
         if (bilddatei==null) {
             System.out.println("Fehlender Bildname bei Objekt mit Kuerzel "+type);

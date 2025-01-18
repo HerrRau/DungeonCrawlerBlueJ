@@ -11,23 +11,23 @@ public class DungeonRucksackVorzimmer extends DungeonfensterRucksack implements 
     {
     }
 
-    public void setzeController(DungeonController c) {
+    public void setController(DungeonController c) {
         controller = c;
     }
 
     public void bLinks1_ActionPerformed(ActionEvent evt) {
         // controller.empfangeRucksackZurueck();
-        controller.empfangeWunsch(1,0);
+        controller.receiveRequest(1,0);
     } // end of bLinks1_ActionPerformed
 
     public void bItem1_ActionPerformed(ActionEvent evt) {
         // controller.empfangeRucksackGegenstand();
-        controller.empfangeWunsch(1,1);
+        controller.receiveRequest(1,1);
     } // end of bItem1_ActionPerformed
 
     public void bRechts1_ActionPerformed(ActionEvent evt) {
         // controller.empfangeRucksackVor();
-        controller.empfangeWunsch(1,2);
+        controller.receiveRequest(1,2);
     } // end of bRechts1_ActionPerformed
 
     public void bNein1_ActionPerformed(ActionEvent evt) {
@@ -37,7 +37,7 @@ public class DungeonRucksackVorzimmer extends DungeonfensterRucksack implements 
 
     public void bDrop1_ActionPerformed(ActionEvent evt) {
         // controller.empfangeRucksackDrop();
-        controller.empfangeWunsch(1, 3);
+        controller.receiveRequest(1, 3);
     } // end of bDrop1_ActionPerformed
 
     public void drawImage(String bildname) {

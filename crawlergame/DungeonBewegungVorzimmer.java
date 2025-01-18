@@ -25,40 +25,41 @@ public class DungeonBewegungVorzimmer extends DungeonfensterBewegung implements 
 
     }
 
-    void show(char[][] miniDungeonTemp, int xPosPlayer, int yPosPlayer) {
-        jPanel.show(miniDungeonTemp, xPosPlayer, yPosPlayer);
-    }
-
-    void setzeController(DungeonController c) {
+    @Override public void setController(DungeonController c) {
         controller = c;
         jPanel.setzeController(c);
     }
 
+
+void show(char[][] miniDungeonTemp, int xPosPlayer, int yPosPlayer) {
+        jPanel.show(miniDungeonTemp, xPosPlayer, yPosPlayer);
+    }
+
     public void bLinksdrehen1_ActionPerformed(ActionEvent evt) {
         //controller.empfangeBewegungDreheLinks();
-        controller.empfangeWunsch(2,1);
+        controller.receiveRequest(2,1);
 
     } // end of bLinksdrehen1_ActionPerformed
 
     public void bVor1_ActionPerformed(ActionEvent evt) {
         //controller.empfangeBewegungVorwaerts();
-        controller.empfangeWunsch(2,0);
+        controller.receiveRequest(2,0);
     } // end of bVor1_ActionPerformed
 
     public void bRechtsdrehen1_ActionPerformed(ActionEvent evt) {
         // controller.empfangeBewegungDreheRechts();
-        controller.empfangeWunsch(2,2);
+        controller.receiveRequest(2,2);
 
     } // end of bRechtsdrehen1_ActionPerformed
 
     public void bJa1_ActionPerformed(ActionEvent evt) {
         // controller.empfangeBewegungJa();
-        controller.empfangeWunsch(2,3);
+        controller.receiveRequest(2,3);
 
     } // end of bJa1_ActionPerformed
 
     public void bNein1_ActionPerformed(ActionEvent evt) {
-        controller.empfangeWunsch(2,4);
+        controller.receiveRequest(2,4);
     } // end of bNein1_ActionPerformed
 
     public void zeigeBewegungGegenstand(String bildname) {

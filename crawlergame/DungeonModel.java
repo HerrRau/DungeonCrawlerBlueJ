@@ -3,13 +3,9 @@ package crawlergame;
 
 public interface DungeonModel
 {
-    public void setzeView(DungeonView d);
-    // weitere setzeLevel
+    public void setView(DungeonView d);
+
     boolean canGoForward(); 
-
-    int gibPosX();
-
-    int gibPosY();
 
     public void goForward();
 
@@ -19,17 +15,13 @@ public interface DungeonModel
 
     public void turnRight();
 
-    public void anfang();
+    public void begin();
     
     public void setzeGegenstand(int posx, int posy, GEGENSTAND g);
 
-    // Gegenstand gibAusRucksack(int i);
-
-    // void entferneAusRucksack(int i);
+    GEGENSTAND gibStandardgegenstand(char type);
 
     GEGENSTAND gibGegenstandAnAktuellerPosition();
-
-    // boolean nimmGegenstand(Gegenstand g);
 
     void entferneGegenstandAnAktuellerPosition();
 

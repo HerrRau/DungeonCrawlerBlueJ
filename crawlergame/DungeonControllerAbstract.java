@@ -10,11 +10,11 @@ public abstract class DungeonControllerAbstract implements DungeonController
     {
     }
 
-    public void setzeModel(DungeonModel m) {
+    @Override public void setModel(DungeonModel m) {
         model =m;
     }
 
-    public void setzeView(DungeonView v) {
+    @Override public void setView(DungeonView v) {
         view = v;
     }
 
@@ -93,10 +93,13 @@ public abstract class DungeonControllerAbstract implements DungeonController
     private void empfangeFigurButton(int index) {
     }
 
-    //public abstract String gibBildname(char c);
-    public abstract GEGENSTAND gibGegenstand(char c);
+    // public abstract GEGENSTAND gibStandardgegenstand(char c);
 
-    public void empfangeWunsch(int view, int nummer) {
+    public GEGENSTAND gibStandardgegenstand(char c) {
+        return model.gibStandardgegenstand(c); 
+    }
+
+    @Override public void receiveRequest(int view, int nummer) {
         if (view == 0) // Figur
         {
             switch(nummer) {

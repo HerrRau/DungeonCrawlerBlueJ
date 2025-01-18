@@ -5,9 +5,10 @@ public class DungeonControllerConcrete extends crawlergame.DungeonControllerAbst
     {
     }
 
-    public void empfangeWunsch(int view, int nummer) {
+    @Override public void receiveRequest(int view, int nummer) {
+        // System.out.println("DCC empfaengt: "+view+", "+nummer+"\n");
         if (view == 2 && nummer<3) {
-            super.empfangeWunsch(view, nummer);   
+            super.receiveRequest(view, nummer);   
             return;   
         }
 
@@ -32,7 +33,7 @@ public class DungeonControllerConcrete extends crawlergame.DungeonControllerAbst
 
     private void nimmGegenstand() {
         Gegenstand g = (Gegenstand) model.gibGegenstandAnAktuellerPosition();
-        System.out.println("DCC "+g);
+        
         if (g==null) return;
         boolean geklappt = ((DungeonModelSuS)model).gibFigur().nimmGegenstandAuf(g);
         if (geklappt) {
@@ -42,9 +43,6 @@ public class DungeonControllerConcrete extends crawlergame.DungeonControllerAbst
         }
         // //zB aufnehmen Gegenstand, oder Angreifen
 
-    }
-
-    private void empfangeBewegungNein() {
     }
 
     // public void empfangeRucksackGegenstand() {
@@ -105,14 +103,5 @@ public class DungeonControllerConcrete extends crawlergame.DungeonControllerAbst
         view.zeigeAusruestungGegenstandName(g.gibName());        
     }
 
-    // USED BY JPANEL und DungenModelAbstract
-    @Override public Gegenstand  gibGegenstand(char c) {
-        switch (c) {
-            case 'c': return new Muenze();
-            case 'w': return new Waffe();
-                // case 'c': return "figur.png";
-        }
-        return null;
-    }
 
 }

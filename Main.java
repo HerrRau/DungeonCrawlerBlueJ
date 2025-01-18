@@ -13,15 +13,15 @@ public class Main
 
         view = new DungeonViewConcrete();
         controller = new DungeonControllerConcrete();
-        controller.setzeModel(model);
-        controller.setzeView(view);
-        view.setzeController(controller);     
+        controller.setModel(model);
+        controller.setView(view);
+        view.setController(controller);     
 
         Figur f = new Figur(); //Reihenfolge egal
         model.setzeFigur(f); // Reihenfolge egal
-        f.setzeView(view); // Reihenfolge wichtig, muss vor model.setzeView - why?
+        f.setView(view); // Reihenfolge wichtig, muss vor model.setzeView - why?
 
-        model.setzeView(view);
+        model.setView(view);
 
         f.setzeWaffe( new Waffe() );
         
@@ -31,7 +31,7 @@ public class Main
 
     void start() 
     {
-        model.anfang();
+        model.begin();
 
     }
 

@@ -4,30 +4,24 @@ public class DungeonModelSuS extends DungeonModelAbstract
 {
     Figur figur;
 
-    public DungeonModelSuS()
-    {
-        //startbr machen ähnlich wie Figur startbar ist
-
-        setupLevel();
+    public DungeonModelSuS() {
+        starteLevel();
     }
 
-    public void zeigeLevel() {
-        updateViewBewegung();
+    public Figur gibFigur () {
+        return figur;         
     }
 
     public void setzeFigur (Figur f) {
         figur = f;
     }    
 
-    public Figur gibFigur () {
-        return figur;         
+    // unbenutzte Hilfsmethode
+    public void zeigeLevel() {
+        updateViewBewegung();
     }
 
-    // public void setzeGegenstand(Gegenstand g, int x, int y) {
-        // super.setzeGegenstand(x,y,g);
-    // }
-
-    void setupLevel()  {
+    private void starteLevel()  {
         char [][] level;
         level = new char[4][4];
         level[0][0] = '-';
@@ -48,15 +42,17 @@ public class DungeonModelSuS extends DungeonModelAbstract
         level[3][3] = 'w';
         level[1][0] = 'X';
         setzeLevel(level, 0, 1, 'N');
-
+        
+        setzeGegenstand(1,2,new Muenze());
     }  
-    
-    public Gegenstand gibStandardgegenstand(char c) {
-        if (c=='c') return new Muenze();
-        else if (c=='w') return new Waffe();
+
+    //##################################
+
+    // used by DungeonModelAbstract and JPanel
+    @Override public Gegenstand gibStandardgegenstand(char c) {
+        if (c == 'c') return new Muenze();
+        else if (c == 'w') return new Waffe();
         return null;        
     }
-
-
 
 }

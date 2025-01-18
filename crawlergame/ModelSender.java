@@ -4,24 +4,33 @@ import java.awt.event.WindowEvent;
 
 public class ModelSender
 {
-    private DungeonFigurVorzimmer ansicht;
+    private DungeonFigurVorzimmer ansichtFigur;
+    private DungeonRucksackVorzimmer ansichtAusruestung;
     private DungeonView view;
-
 
     public ModelSender()
     {
-        if (Setup.useTestMode) ansicht = new DungeonFigurVorzimmer();
+        if (Setup.useTestModeFigur) {
+            ansichtFigur = new DungeonFigurVorzimmer();   
+        }
     }
 
-    public void setzeView(DungeonView v) {
-        if (Setup.useTestMode) return;
+    public void setView(DungeonView v) {
+        if (Setup.useTestModeFigur) return;
         view = v;
     }
 
     protected DungeonViewFigur gibAnsicht() {
-        if (Setup.useTestMode) return ansicht;
+        if (Setup.useTestModeFigur) return ansichtFigur;
         return view;
     }
 
+    protected DungeonViewFigur gibAnsichtFigur() {
+        return ansichtFigur;
+    }
+
+    protected DungeonViewAusruestung gibAnsichtAusruestung() {
+        return ansichtAusruestung;
+    }
 
 }

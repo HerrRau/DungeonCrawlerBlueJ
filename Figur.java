@@ -1,6 +1,6 @@
 import crawlergame.*;
 
-public class Figur extends ModelSender //crawlergame.Figur
+public class Figur extends ModelSender
 {
     Gegenstand  [] rucksack;
 
@@ -17,7 +17,7 @@ public class Figur extends ModelSender //crawlergame.Figur
     
     public Figur() {
        rucksack = new Gegenstand[10];
-       setzeWaffe ( new Waffe() );
+       //hier kein setzeWaffe ( new Waffe() ); - weil View noch nicht aktiv
     }
 
     public Gegenstand gibAusRucksack(int i) {

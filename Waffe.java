@@ -2,7 +2,7 @@ public class Waffe extends Gegenstand
 {
     public Waffe()
     {
-        setzeBildname("images/sword.png");
+        setzeBildname("sword.png");
     }
 
     public char gibKuerzel() {

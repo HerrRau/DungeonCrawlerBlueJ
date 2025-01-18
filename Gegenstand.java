@@ -1,4 +1,5 @@
 import crawlergame.*;
+
 public class Gegenstand extends GEGENSTAND
 {
     String name;
@@ -13,7 +14,7 @@ public class Gegenstand extends GEGENSTAND
     public String gibBildname() {
         return bildname; //evtl auf null ueberpruefen
     }
-
+    
     // muss verwendet werden
     public void setzeBildname(String s) {
         bildname = s;
@@ -23,6 +24,5 @@ public class Gegenstand extends GEGENSTAND
     @Override public char gibKuerzel() {
         return '?';
     }
-
 
 }

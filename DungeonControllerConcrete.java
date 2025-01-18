@@ -9,27 +9,33 @@ public class DungeonControllerConcrete extends crawlergame.DungeonControllerAbst
     }
 
     public void empfangeWunsch(int view, int nummer) {
-        System.out.println("DCC Wunsch: "+view+", "+nummer);
+        if (view == 2 && nummer<3) {
+            super.empfangeWunsch(view, nummer);   
+            return;   
+        }
 
         if (view == 2) {
             if (nummer == 3) {
                 empfangeBewegungJa();
             }
-            else {
-                super.empfangeWunsch(view, nummer);   
-            }
         }
-        else {
-            super.empfangeWunsch(view, nummer);   
+        else if (view == 1) {
+            if (nummer == 0) {
+                empfangeRucksackZurueck();
+            }
+            if (nummer == 2) {
+                empfangeRucksackVor();                               
+            }
         }
     }
 
     // void setzeModel(DungeonModelSuS m)  {
-    // model = m;    
+    // model = m;     
     // }
 
     private void empfangeBewegungJa() {
         Gegenstand g = (Gegenstand) model.gibGegenstandAnAktuellerPosition();
+        System.out.println("DCC "+g);
         if (g==null) return;
         boolean geklappt = ((DungeonModelSuS)model).gibFigur().nimmGegenstandAuf(g);
         if (geklappt) {
@@ -74,41 +80,41 @@ public class DungeonControllerConcrete extends crawlergame.DungeonControllerAbst
 
     // }
 
-    // public void empfangeRucksackZurueck() {
-    // aktuellerGegenstand--;
-    // if (aktuellerGegenstand<0) aktuellerGegenstand = 0;
-    // Gegenstand g = null;
-    // g = model.gibFigur().gibAusRucksack(aktuellerGegenstand);
-    // if (g==null) {
-    // view.zeigeAusruestungGegenstandBild("images/nichts.png");        
-    // return;
-    // }
-    // view.zeigeAusruestungGegenstandBild(g.gibBildname());        
-    // view.zeigeAusruestungGegenstandName(g.name);        
-    // }
+    public void empfangeRucksackZurueck() {
+        aktuellerGegenstand--;
+        if (aktuellerGegenstand<0) aktuellerGegenstand = 0;
+        Gegenstand g = null;
+        g = ((DungeonModelSuS)model).gibFigur().gibAusRucksack(aktuellerGegenstand);
+        if (g==null) {
+            view.zeigeAusruestungGegenstandBild("images/nichts.png");        
+            return;
+        }
+        view.zeigeAusruestungGegenstandBild(g.gibBildname());        
+        view.zeigeAusruestungGegenstandName(g.name);        
+    }
 
-    // public void empfangeRucksackVor() {
-    // aktuellerGegenstand++;
-    // int max = 9;
-    // if (aktuellerGegenstand>max) aktuellerGegenstand = max;
-    // Gegenstand g = null;
-    // g = model.gibFigur().gibAusRucksack(aktuellerGegenstand);
-    // if (g==null) {
-    // view.zeigeAusruestungGegenstandBild("images/nichts.png");        
-    // return;
-    // }
-    // view.zeigeAusruestungGegenstandBild(g.gibBildname());        
-    // view.zeigeAusruestungGegenstandName(g.name);        
-    // }
+    public void empfangeRucksackVor() {
+        aktuellerGegenstand++;
+        int max = 9;
+        if (aktuellerGegenstand>max) aktuellerGegenstand = max;
+        Gegenstand g = null;
+        g = ((DungeonModelSuS)model).gibFigur().gibAusRucksack(aktuellerGegenstand);
+        if (g==null) {
+            view.zeigeAusruestungGegenstandBild("images/nichts.png");        
+            return;
+        }
+        view.zeigeAusruestungGegenstandBild(g.gibBildname());        
+        view.zeigeAusruestungGegenstandName(g.name);        
+    }
 
-    // USED BY JPANEL
-    @Override public String gibBildname(char c) {
+    // USED BY JPANEL und DungenModelAbstract
+    @Override public Gegenstand  gibGegenstand(char c) {
         switch (c) {
-            case 'c': return "coin.png";
-            case 'w': return "sword.png";
+            case 'c': return new Muenze();
+            case 'w': return new Waffe();
                 // case 'c': return "figur.png";
         }
-        return "nichts.png";
+        return null;
     }
 
 }

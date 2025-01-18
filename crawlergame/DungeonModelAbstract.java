@@ -144,7 +144,19 @@ public abstract class DungeonModelAbstract implements DungeonModel
         dungeon = level;
         setStartPos(posx, posy, facing);        
         gegenstaende = erzeugeGegenstaende(level);
+        
+        //wenn im level ein Kuerzel steht, ein Objekt erzeugen
+        for (int y=0; y<level.length; y++) {
+            for (int x=0; x<level[y].length; x++) {
+                if (level[y][x] != Setup.BLOCK && level[y][x]!=Setup.EMPTY) {
+                    GEGENSTAND g = gibStandardgegenstand(level[y][x]);
+                    gegenstaende[y][x] = g;                    
+                }
+            }
+        }
     }
+
+    public abstract GEGENSTAND gibStandardgegenstand(char type);
 
     //################# Setter
     
@@ -210,7 +222,9 @@ public abstract class DungeonModelAbstract implements DungeonModel
     }
 
     public GEGENSTAND gibGegenstandAnAktuellerPosition() {
-        return gegenstaende[ypos][xpos];
+        GEGENSTAND g = gegenstaende[ypos][xpos]; 
+        System.out.println("DMA "+g+": "+xpos+","+ypos);
+        return g;
         // char c = get(xpos, ypos);
         // if (c==Setup.EMPTY || c==Setup.BLOCK) return null;        
         //return Setup.gibGegenstand(c); // heisst: alle sind generisch

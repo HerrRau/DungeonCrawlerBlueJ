@@ -41,6 +41,7 @@ public class DungeonRucksackVorzimmer extends DungeonfensterRucksack implements 
     } // end of bDrop1_ActionPerformed
 
     public void drawImage(String bildname) {
+        bildname = Setup.imagePath + bildname;
         ImageIcon icon = new ImageIcon(getClass().getResource(bildname));       
         bItem1.setIcon(icon);
     }

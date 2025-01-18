@@ -49,6 +49,14 @@ public class DungeonModelSuS extends DungeonModelAbstract
         level[1][0] = 'X';
         setzeLevel(level, 0, 1, 'N');
 
-    }    
+    }  
+    
+    public Gegenstand gibStandardgegenstand(char c) {
+        if (c=='c') return new Muenze();
+        else if (c=='w') return new Waffe();
+        return null;        
+    }
+
+
 
 }

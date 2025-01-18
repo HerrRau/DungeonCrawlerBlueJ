@@ -30,23 +30,6 @@ public abstract class DungeonControllerAbstract implements DungeonController
         model.turnRight();
     }
 
-    private void empfangeBewegungJa() {
-        // Gegenstand g = model.gibGegenstandAnPosition();
-        // if (g==null) return;
-        // boolean geklappt = model.nimmGegenstand(g);
-        // if (geklappt) {
-        // model.entferneGegenstandAnPosition();            
-        // String bildname = Setup.gibBildname(g);
-        // aktuellerGegenstand = 0; //hmmmmm
-        // view.zeigeAusruestungGegenstandBild(bildname); //in Model?
-        // }
-        // //zB aufnehmen Gegenstand, oder Angreifen
-
-    }
-
-    private void empfangeBewegungNein() {
-    }
-
     private void empfangeRucksackGegenstand() {
         // Gegenstand g = null;
         // g = model.gibAusRucksack(aktuellerGegenstand);
@@ -110,7 +93,8 @@ public abstract class DungeonControllerAbstract implements DungeonController
     private void empfangeFigurButton(int index) {
     }
 
-    public abstract String gibBildname(char c);
+    //public abstract String gibBildname(char c);
+    public abstract GEGENSTAND gibGegenstand(char c);
 
     public void empfangeWunsch(int view, int nummer) {
         if (view == 0) // Figur
@@ -143,8 +127,8 @@ public abstract class DungeonControllerAbstract implements DungeonController
                 case 0: empfangeBewegungVorwaerts(); break;
                 case 1: empfangeBewegungDreheLinks(); break;
                 case 2: empfangeBewegungDreheRechts(); break;
-                case 3: empfangeBewegungJa(); break;
-                case 4: empfangeBewegungNein(); break;
+                // case 3: empfangeBewegungJa(); break;
+                // case 4: empfangeBewegungNein(); break;
             }
         }
 

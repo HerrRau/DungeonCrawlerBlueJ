@@ -5,7 +5,8 @@ public class DungeonControllerConcrete extends crawlergame.DungeonControllerAbst
     {
     }
 
-    @Override public void receiveRequest(int view, int nummer) {
+    @Override
+    public void receiveRequest(int view, int nummer) {
         // System.out.println("DCC empfaengt: "+view+", "+nummer+"\n");
         if (view == 2) {
             switch(nummer) {

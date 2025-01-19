@@ -2,7 +2,7 @@ import crawlergame.*;
 
 public class DungeonModelSuS extends DungeonModelAbstract
 {
-    Figur figur;
+    private Figur figur;
 
     public DungeonModelSuS() {
         starteLevel();
@@ -16,7 +16,7 @@ public class DungeonModelSuS extends DungeonModelAbstract
         figur = f;
     }    
 
-    // unbenutzte Hilfsmethode
+    // Hilfsmethode zum Anschauen
     public void zeichneLevel() {
         updateViewBewegung();
     }
@@ -32,7 +32,7 @@ public class DungeonModelSuS extends DungeonModelAbstract
      * Typisches Vorgehen: Ein leeres char[][] von ebstimmter Groesse in einer Variable speichern und nach und nach fuellen
      * Moegle Inhalte: '-' fuer leer, 'X' fuer Block, und ansonsten nur das, was du in gibStandardgegenstand angegeben hast
      */
-    private void starteLevel()  {                
+    void starteLevel()  {                
         //temporale Variable fuer den Level
         char [][] level;
         //Initialisieren der Variablen, insbesondere die Groesse
@@ -68,35 +68,27 @@ public class DungeonModelSuS extends DungeonModelAbstract
         level[3][6] = '-';
         //Absenden des Levels
         setzeLevel(level, 0, 1, 'N');
+        //nachtraeglich
         setzeGegenstand(0,2, new Muenze());
         zeichneLevel();
     }  
 
-    private void starteLevel2()  {                
+
+    void starteLevelSIMPEL()  {                
         //temporale Variable fuer den Level
         char [][] level;
         //Initialisieren der Variablen, insbesondere die Groesse
-        level = new char[4][4];
+        level = new char[1][7];
         //Fuellen des Levels
         level[0][0] = '-';
         level[0][1] = '-';
         level[0][2] = '-';
-        level[0][3] = '-';
-        level[1][0] = '-';
-        level[1][1] = '-';
-        level[1][2] = '-';
-        level[1][3] = '-';
-        level[2][0] = '-';
-        level[2][1] = '-';
-        level[2][2] = '-';
-        level[2][3] = '-';
-        level[3][0] = '-';
-        level[3][1] = 'c';
-        level[3][2] = '-';
-        level[3][3] = 'w';
-        level[1][0] = 'X';
+        level[0][3] = 'c';
+        level[0][4] = '-';
+        level[0][5] = '-';
+        level[0][6] = '-';
         //Absenden des Levels
-        setzeLevel(level, 0, 1, 'N');
+        setzeLevel(level, 0, 0, 'N');
         zeichneLevel();
     }  
 
@@ -105,6 +97,7 @@ public class DungeonModelSuS extends DungeonModelAbstract
     // used by DungeonModelAbstract and JPanel
     @Override
     public Gegenstand gibStandardgegenstand(char c) {
+        //fast alle characters ausser X und - sind erlaubt (im Prinzip: 16-bit Unicode)
         if (c == 'c') return new Muenze();
         else if (c == 'w') return new Waffe();
         else return null;        

@@ -253,7 +253,8 @@ public class JPanelBewegung extends JPanel
 
     //#################################
 
-    void draw(Graphics g) {
+    private void draw(Graphics g) {
+        System.out.println("JPB drawing");
         eraseAll(g);
         if (drawLines) drawLines(g);
 

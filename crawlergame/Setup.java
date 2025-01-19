@@ -9,7 +9,7 @@ public class Setup
     public static String imagePath = "images/";
     public final static char EMPTY = '-';
     public final static char BLOCK = 'X';
-    public final static char BLOCK_BORDER = 'x';
+    public final static char BLOCK_BORDER = '×';
     public final static char FACING_N = 'A';
     public final static char FACING_E = '>';
     public final static char FACING_S = 'V';

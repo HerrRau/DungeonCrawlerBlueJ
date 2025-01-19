@@ -16,7 +16,6 @@ import javax.swing.event.*;
 public class DungeonfensterRucksack extends JFrame {
     // start attributes
     protected JPanel jPanel1 = new JPanel(null, true);
-    protected Canvas canvas1 = new Canvas(); ////////////////////////////////////////// loeschen!!!!!!!!!!!!!!!
     protected JLabel lNachricht1 = new JLabel();
     protected JButton bLinks1 = new JButton();
     protected JButton bItem1 = new JButton();

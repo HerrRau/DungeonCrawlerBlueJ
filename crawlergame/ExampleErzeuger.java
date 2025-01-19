@@ -10,16 +10,27 @@ public class ExampleErzeuger
         this.model = model;   
     }
 
-    char[][] erzeugeDungeonLeer(int size) {
-        char[][] dung = new char[size][];
+    char[][] erzeugeDungeonLeer(int y, int x) {
+        char[][] dung = new char[y][];
         for (int i=0; i<dung.length; i++) {
-            dung[i] = new char[size];
+            dung[i] = new char[x];
             for (int j=0; j<dung[i].length; j++) {
                 dung[i][j] = Setup.EMPTY;
             }        
         }       
         return dung;
     }
+
+    // char[][] erzeugeDungeonLeer(int size) {
+        // char[][] dung = new char[size][];
+        // for (int i=0; i<dung.length; i++) {
+            // dung[i] = new char[size];
+            // for (int j=0; j<dung[i].length; j++) {
+                // dung[i][j] = Setup.EMPTY;
+            // }        
+        // }       
+        // return dung;
+    // }
 
     void fillBorder(char[][]dungeon) {
         for (int i=0; i<dungeon.length; i++) {

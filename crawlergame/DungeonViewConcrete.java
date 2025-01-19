@@ -59,4 +59,8 @@ public class DungeonViewConcrete implements DungeonView
         view2.zeigeFigur(koerperteil, bildname);
     }
 
+    public void zeigeFigurStats(String [] strings) {
+        view2.zeigeFigurStats(strings);
+    }
+
 }

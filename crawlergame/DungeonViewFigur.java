@@ -8,5 +8,6 @@ public interface DungeonViewFigur
 
     void zeigeFigur(int koerperteil, String bildname);
 
+    void zeigeFigurStats(String [] strings);
 
 }

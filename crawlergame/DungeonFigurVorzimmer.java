@@ -20,6 +20,9 @@ public class DungeonFigurVorzimmer extends DungeonfensterFigur implements Dungeo
         jButton5.setContentAreaFilled(false);
         jButton6.setContentAreaFilled(false);
         jButton7.setContentAreaFilled(false);
+        
+        ImageIcon icon = new ImageIcon( Setup.getResource("figur_hintergrund.png") );
+        jLabel2.setIcon(icon);
     }
 
     @Override public void setController(DungeonController c) {
@@ -87,5 +90,11 @@ public class DungeonFigurVorzimmer extends DungeonfensterFigur implements Dungeo
     public void jButton8_ActionPerformed(ActionEvent evt) {
         if (controller!=null) controller.receiveRequest(0,7);
     } // end of jButton8_ActionPerformed
+
+    public void zeigeFigurStats(String [] strings) {
+        for (int i=0; i<strings.length; i++) {
+            System.out.println(strings[i]);
+        }
+    }
 
 }

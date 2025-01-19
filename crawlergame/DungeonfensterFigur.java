@@ -29,10 +29,10 @@ public class DungeonfensterFigur extends JFrame {
     protected JButton jButton5 = new JButton();
     protected JButton jButton6 = new JButton();
     protected JButton jButton7 = new JButton();
-    private JLabel jLabel2 = new JLabel();
+    protected JLabel jLabel2 = new JLabel();
     // private ImageIcon jLabel2Icon = new ImageIcon(getClass().getResource(Setup.imagePath + "figur_hintergrund.png"));
     //private ImageIcon jLabel2Icon = GraphicsHelper.createImageIcon( "figur_hintergrund.png");
-    private ImageIcon jLabel2Icon = new ImageIcon( Setup.getResource("figur_hintergrund.png") );
+    // privatke ImageIcon jLabel2Icon = new ImageIcon( Setup.getResource("figur_hintergrund.png") );
     
     
     private JButton jButton8 = new JButton();
@@ -130,7 +130,7 @@ public class DungeonfensterFigur extends JFrame {
     jLabel2.setBounds(24, 0, 500, 560);
     jLabel2.setText("Text");
     jLabel2.setBackground(Color.WHITE);
-    jLabel2.setIcon(jLabel2Icon);
+    // jLabel2.setIcon(jLabel2Icon);
     jLabel2.setVerticalAlignment(SwingConstants.TOP);
     jPanel1.add(jLabel2);
     jButton8.setBounds(184, 592, 177, 73);

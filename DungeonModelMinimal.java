@@ -4,10 +4,11 @@ public class DungeonModelMinimal extends DungeonModelAbstract
 {
 
     public DungeonModelMinimal() {
+        super();
     }
 
     public void zeichneLevel() {
-        updateViewBewegung();
+        super.updateViewBewegung();
     }
 
 }

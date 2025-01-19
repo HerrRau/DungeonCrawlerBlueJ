@@ -14,10 +14,10 @@ public class Figur extends ModelSender
 
     int staerke;
     int geschicklichkeit;
-    
+
     public Figur() {
-       rucksack = new Gegenstand[10];
-       //hier kein setzeWaffe ( new Waffe() ); - weil View noch nicht aktiv
+        rucksack = new Gegenstand[10];
+        //hier kein setzeWaffe ( new Waffe() ); - weil View noch nicht aktiv
     }
 
     public Gegenstand gibAusRucksack(int i) {
@@ -26,6 +26,10 @@ public class Figur extends ModelSender
 
     public void entferneAusRucksack(int i) {
         rucksack[i] = null;
+    }
+    
+    public int gibRucksackLaenge() {
+        return rucksack.length;
     }
 
     public int nimmGegenstandAuf(Gegenstand g) {
@@ -37,25 +41,26 @@ public class Figur extends ModelSender
         }
         return -1;
     }
-    
+
     public void setzeWaffe(Waffe w) {
         waffe = w;
         gibAnsicht().zeigeFigur(3, "sword.png");
         //gibAnsicht().zeigeFigur(3, w.gibBildname());
     }
-    
+
     public Waffe gibWaffe() {
         return waffe;
     }
-    
+
     public void entferneWaffe() {
         waffe = null;
         gibAnsicht().zeigeFigur(3, "nichts.png");
     }
-    
+
     public int angriffGeben() {
         return staerke;
     }
+
     public int verteidigungGeben() {
         return geschicklichkeit;
     }

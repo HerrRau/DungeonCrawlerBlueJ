@@ -106,8 +106,8 @@ public class DungeonControllerConcrete extends DungeonControllerAbstract
     }
 
     private void empfangeRucksackVor() {
-        aktuellerGegenstand++;
-        int max = 9;
+        aktuellerGegenstand++;        
+        int max = figur.gibRucksackLaenge() - 1;
         if (aktuellerGegenstand>max) aktuellerGegenstand = max;
         Gegenstand g = gibFigur().gibAusRucksack(aktuellerGegenstand);
         if (g==null) {

@@ -66,6 +66,10 @@ void show(char[][] miniDungeonTemp, int xPosPlayer, int yPosPlayer) {
     }
 
     public void zeigeBewegungNachricht(String text) {
+        jTextArea1.setText("/n"+text);
+        jTextArea1.setCaretPosition(jTextArea1.getDocument().getLength());
+        //################## mal loeschen
+        
     }
 
     public void zeigeBewegungAusschnitt(char[][] miniDungeonTemp, int xPosPlayer, int yPosPlayer) {

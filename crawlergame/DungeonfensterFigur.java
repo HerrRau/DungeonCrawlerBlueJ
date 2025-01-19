@@ -30,12 +30,7 @@ public class DungeonfensterFigur extends JFrame {
     protected JButton jButton6 = new JButton();
     protected JButton jButton7 = new JButton();
     protected JLabel jLabel2 = new JLabel();
-    // private ImageIcon jLabel2Icon = new ImageIcon(getClass().getResource(Setup.imagePath + "figur_hintergrund.png"));
-    //private ImageIcon jLabel2Icon = GraphicsHelper.createImageIcon( "figur_hintergrund.png");
-    // privatke ImageIcon jLabel2Icon = new ImageIcon( Setup.getResource("figur_hintergrund.png") );
-    
-    
-    private JButton jButton8 = new JButton();
+    protected JButton jButton8 = new JButton();
   // end attributes
   
   public DungeonfensterFigur() { 
@@ -91,7 +86,7 @@ public class DungeonfensterFigur extends JFrame {
       }
     });
     jPanel1.add(jButton3);
-    jButton4.setBounds(32, 88, 130, 130);
+    jButton4.setBounds(24, 88, 150, 150);
     jButton4.setText("Button");
     jButton4.setMargin(new Insets(2, 2, 2, 2));
     jButton4.addActionListener(new ActionListener() { 
@@ -100,7 +95,7 @@ public class DungeonfensterFigur extends JFrame {
       }
     });
     jPanel1.add(jButton4);
-    jButton5.setBounds(384, 80, 130, 130);
+    jButton5.setBounds(376, 72, 150, 150);
     jButton5.setText("Button");
     jButton5.setMargin(new Insets(2, 2, 2, 2));
     jButton5.addActionListener(new ActionListener() { 
@@ -130,7 +125,6 @@ public class DungeonfensterFigur extends JFrame {
     jLabel2.setBounds(24, 0, 500, 560);
     jLabel2.setText("Text");
     jLabel2.setBackground(Color.WHITE);
-    // jLabel2.setIcon(jLabel2Icon);
     jLabel2.setVerticalAlignment(SwingConstants.TOP);
     jPanel1.add(jLabel2);
     jButton8.setBounds(184, 592, 177, 73);
@@ -148,10 +142,7 @@ public class DungeonfensterFigur extends JFrame {
   } // end of public DungeonfensterFigur
   
   // start methods
-  
-  public static void main(String[] args) {
-    new DungeonfensterFigur();
-  } // end of main
+  // end of main
   
   public void jButton2_ActionPerformed(ActionEvent evt) {
     // TODO add your code here

@@ -4,10 +4,12 @@ public class AusschnittErzeuger
 {
     DungeonModelAbstract model;
     boolean use7533 = false;
-    boolean use33333 = false;
+    boolean use33333 = true;
+    boolean use3333333 = false;
     boolean use7555 = false;
     boolean use7777 = false;
-    boolean use9999999 = true;
+    boolean use9999999 = false;
+    boolean use55555 = false;
 
     public AusschnittErzeuger(DungeonModelAbstract m)
     {
@@ -17,6 +19,8 @@ public class AusschnittErzeuger
     public  char[][] createMiniDungeon(int posx, int posy, char facing) {
         if (use7533) return createMiniDungeon7533(posx, posy, facing);
         if (use33333) return createMiniDungeon(5, 3, posx, posy, facing);
+        if (use3333333) return createMiniDungeon(7, 3, posx, posy, facing);
+        if (use55555) return createMiniDungeon(5, 5, posx, posy, facing);
         if (use7555) return createMiniDungeon7555(posx, posy, facing);
         if (use7777) return createMiniDungeon7777(posx, posy, facing);
         if (use9999999) return createMiniDungeon9999999(posx, posy, facing);

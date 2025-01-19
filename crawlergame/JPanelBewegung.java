@@ -262,14 +262,17 @@ public class JPanelBewegung extends JPanel
             // first, draw all the sides for the level
             for (int x = 0; x<miniDungeon[depth].length; x++) {
                 char item = miniDungeon[depth][x]; 
-                if (item == Setup.BLOCK) {
+                if (item == Setup.BLOCK || item == Setup.BLOCK_BORDER) {
                     drawBlockSides(depth, x, g);
                 }
             }
             // then, draw all the fronts (to cover any sides)
             for (int x = 0; x<miniDungeon[depth].length; x++) {
                 char item = miniDungeon[depth][x]; 
-                if (item == Setup.BLOCK) {
+                if (item == Setup.BLOCK || item == Setup.BLOCK_BORDER) {
+                    /**
+                     * eigentlich nur zeichnen, wenn nicht am Rand!
+                     */
                     drawBlockFront(depth, x, g);
                 }
                 //and the items, which could go elsewhere, too, I guess

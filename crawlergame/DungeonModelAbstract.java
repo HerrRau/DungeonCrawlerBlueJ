@@ -166,10 +166,11 @@ public abstract class DungeonModelAbstract implements DungeonModel
     }    
 
     public char get(int x, int y) {
-        if (y<0 || y> dungeon.length-1) return Setup.BLOCK;         // order important
-        if (x<0 || x> dungeon[y].length-1) return Setup.BLOCK;      // order important
+        if (y<0 || y> dungeon.length-1) return Setup.BLOCK_BORDER;         // order important
+        if (x<0 || x> dungeon[y].length-1) return Setup.BLOCK_BORDER;      // order important
         return dungeon[y][x];
     }
+
 
     protected void setBlock(int x, int y) {
         dungeon[y][x] = Setup.BLOCK;        

@@ -26,5 +26,6 @@ public interface DungeonModel
     void entferneGegenstandAnAktuellerPosition();
 
     void setzeGegenstandAnAktuellerPosition(Item i);
+    
 
 }

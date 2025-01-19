@@ -7,8 +7,8 @@ public class ViewPrinter //implements DungeonViewBewegung
     }
 
     public void zeigeBewegungAusschnitt(char[][] dungeon, int xPosPlayer, int yPosPlayer) {
-        char old = dungeon[dungeon.length-1][dungeon.length/2+1];
-        dungeon[dungeon.length-1][dungeon.length/2+1] = 'A'; //Player
+        char old = dungeon[dungeon.length-1][dungeon[0].length/2+1];
+        dungeon[dungeon.length-1][dungeon[0].length/2+1] = 'A'; //Player
 
         for (int y=0; y<dungeon.length; y++) {
             for (int i=0; i<10-dungeon[y].length/2; i++) {
@@ -23,7 +23,7 @@ public class ViewPrinter //implements DungeonViewBewegung
         }
         System.out.println();
 
-        dungeon[dungeon.length-1][dungeon.length/2+1] = old; // before Player
+        dungeon[dungeon.length-1][dungeon[0].length/2+1] = old; // before Player
     }
 
     public void zeigeBewegungDungeon(char[][] dungeon, int xPosPlayer, int yPosPlayer, char facing) {

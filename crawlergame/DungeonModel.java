@@ -5,11 +5,13 @@ public interface DungeonModel
 {
     public void setView(DungeonView d);
 
+    void registerAsMoveable(Item i);    
+
     boolean canGoForward(); 
 
-    public void goForward();
+    boolean canGoForward(int x, int y, char facing); 
 
-    // public void goBack();
+    public void goForward();
 
     public void turnLeft();
 
@@ -25,7 +27,14 @@ public interface DungeonModel
 
     void entferneGegenstandAnAktuellerPosition();
 
+    void entferneGegenstandAn(int x, int y);
+
     void setzeGegenstandAnAktuellerPosition(Item i);
+    
+    void bewegeGegenstandVonNach(int xalt, int yalt, int xneu, int yneu);
+
+    public void moveMoveables();
+
     
 
 }

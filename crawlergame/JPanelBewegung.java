@@ -318,22 +318,19 @@ public class JPanelBewegung extends JPanel
             newHeight = (int) (orgHeight*1.0*orgWidth/newWidth); //unused ...zB auf Breite der Ebene, und dann nachganz unten?
             newWidth = (int)(newWidth * 0.8);
             newHeight = (int)(newHeight * 0.8);
-
-            xpos = canvasSizeX/2 - newWidth/2; //i.e. mitte
-            ypos = canvasSizeY/2 - (int) blockSizeX[depth]/2; // perspektivisch schwierig
+            xpos = canvasSizeX/2 - newWidth/2; 
+            ypos = canvasSizeY/2 - newWidth/2; // perspektivisch schwierig
 
         } else {
             newWidth = (int) (blockSizeX[depth]/2); //###################k
             newHeight = (int) (orgHeight*1.0*orgWidth/newWidth); //unused ...zB auf Breite der Ebene, und dann nachganz unten?
             newWidth = (int)(newWidth * 0.8);
             newHeight = (int)(newHeight * 0.8);
-            Image newImage = scaleImage2(icon, newWidth, newWidth*1);
-
             xpos = canvasSizeX/2 - newWidth/2; //i.e. mitte
             ypos = canvasSizeY/2; // perspektivisch schwierig
 
         }
-        Image newImage = scaleImage2(icon, newWidth, newWidth*1);
+        Image newImage = scaleImage2(icon, newWidth, newWidth);
 
         int abstandX = Math.abs(miniDungeon[depth].length/2 - x);
         
@@ -345,7 +342,7 @@ public class JPanelBewegung extends JPanel
             xpos = xpos + (int)blockSizeX [depth]/2 * abstandX;
             newWidth = (int) (newWidth * 0.7);
         }        
-        if (x==miniDungeon[depth].length/2 && depth == miniDungeon.length-1) {
+        if (false && x==miniDungeon[depth].length/2 && depth == miniDungeon.length-1) {
             jButton1.setVisible(true);
             jButton1.setOpaque(false);
             jButton1.setContentAreaFilled(false);

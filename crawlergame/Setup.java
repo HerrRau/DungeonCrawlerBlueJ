@@ -14,6 +14,7 @@ public class Setup
     public final static char FACING_E = '>';
     public final static char FACING_S = 'V';
     public final static char FACING_W = '<';
+    public static DungeonModel model;
 
     static Class cls;
     

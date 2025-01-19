@@ -3,9 +3,7 @@ import crawlergame.*;
 public class DungeonModelSuS extends DungeonModelAbstract
 {
     private Figur figur;
-
     public DungeonModelSuS() {
-        starteLevel();
     }
 
     public Figur gibFigur () {
@@ -32,7 +30,41 @@ public class DungeonModelSuS extends DungeonModelAbstract
      * Typisches Vorgehen: Ein leeres char[][] von ebstimmter Groesse in einer Variable speichern und nach und nach fuellen
      * Moegle Inhalte: '-' fuer leer, 'X' fuer Block, und ansonsten nur das, was du in gibStandardgegenstand angegeben hast
      */
-    void starteLevel()  {                
+    void setzeLevelSIMPEL()  {        
+        int zeilen = 1;
+        int spalten = 7;
+        //temporale Variable fuer den Level
+        char [][] level;
+        //Initialisieren der Variablen, insbesondere die Groesse
+        level = new char[zeilen][spalten];
+        //Fuellen des Levels
+        level[0][0] = '-';
+        level[0][1] = '-';
+        level[0][2] = '-';
+        level[0][3] = 'c';
+        level[0][4] = '-';
+        level[0][5] = '-';
+        level[0][6] = '-';
+        //Absenden des Levels
+        setzeLevel(level, 0, 0, 'N');
+        zeichneLevel();
+        
+        //####################### lässt sich natragelich noch etwas am level veraendern, direkt, ohne Methode?
+    }  
+
+    void setzeLevelXXX()  {        
+        int zeilen = 6;
+        int spalten = 7;
+        //temporale Variable fuer den Level
+        char [][] level;
+        //Initialisieren der Variablen, insbesondere die Groesse
+        level = new char[zeilen][spalten];
+        //Absenden des Levels
+        setzeLevel(level, 0, 0, 'N');
+        zeichneLevel();
+    }  
+
+    void setzeLevel()  {                
         //temporale Variable fuer den Level
         char [][] level;
         //Initialisieren der Variablen, insbesondere die Groesse
@@ -43,7 +75,7 @@ public class DungeonModelSuS extends DungeonModelAbstract
         level[0][2] = '-';
         level[0][3] = '-';
         level[0][4] = '-';
-        level[0][5] = '-';
+        level[0][5] = 'm';
         level[0][6] = '-';
         level[1][0] = '-';
         level[1][1] = 'X';
@@ -74,23 +106,6 @@ public class DungeonModelSuS extends DungeonModelAbstract
     }  
 
 
-    void starteLevelSIMPEL()  {                
-        //temporale Variable fuer den Level
-        char [][] level;
-        //Initialisieren der Variablen, insbesondere die Groesse
-        level = new char[1][7];
-        //Fuellen des Levels
-        level[0][0] = '-';
-        level[0][1] = '-';
-        level[0][2] = '-';
-        level[0][3] = 'c';
-        level[0][4] = '-';
-        level[0][5] = '-';
-        level[0][6] = '-';
-        //Absenden des Levels
-        setzeLevel(level, 0, 0, 'N');
-        zeichneLevel();
-    }  
 
     //################################## diese Methode ist wichtig fuer das Spiel
 
@@ -100,6 +115,7 @@ public class DungeonModelSuS extends DungeonModelAbstract
         //fast alle characters ausser X und - sind erlaubt (im Prinzip: 16-bit Unicode)
         if (c == 'c') return new Muenze();
         else if (c == 'w') return new Waffe();
+        else if (c == 'm') return new Monster();
         else return null;        
     }
 

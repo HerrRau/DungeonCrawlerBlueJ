@@ -10,12 +10,14 @@ public abstract class DungeonModelAbstract implements DungeonModel
     char comesFrom;
 
     private DungeonView view;
+    private java.util.ArrayList<Item> moveables = new java.util.ArrayList();
 
     AusschnittErzeuger erzeugerAusschnitt;
     ExampleErzeuger erzeugerExample;
 
     public DungeonModelAbstract(char[][] dung, int startX, int startY, char facing)
     { 
+        Setup.model = this;
         erzeugerAusschnitt = new AusschnittErzeuger(this);
         erzeugerExample = new ExampleErzeuger(this);
         setzeLevel(dung, startX, startY, facing);
@@ -23,10 +25,11 @@ public abstract class DungeonModelAbstract implements DungeonModel
 
     public DungeonModelAbstract()
     {
+        Setup.model = this;
         erzeugerAusschnitt = new AusschnittErzeuger(this);
         erzeugerExample = new ExampleErzeuger(this);
-        setzeLevel(erzeugerExample.erzeugeDungeonLeer(10), 1, 1, 'N');
-        erzeugerExample.fillExampleSimple();
+        setzeLevel(erzeugerExample.erzeugeDungeonLeer(10), 1, 1, 'S');
+        //erzeugerExample.fillExampleSimple();
         // erzeugerExample.fillExample();
     }
 
@@ -51,9 +54,7 @@ public abstract class DungeonModelAbstract implements DungeonModel
         view.zeigeBewegungDungeon(dungeon, xpos, ypos, facing);
     }
 
-
     //################# Bewegung
-
     final public void goForward() {
         //does not check if possible in itself
         //can go forward does that
@@ -114,9 +115,59 @@ public abstract class DungeonModelAbstract implements DungeonModel
         return false;
     }
 
+    public boolean canGoForward(int xpos, int ypos, char facing) { // fuer monster  
+        if (facing == 'N') {
+            if (isEmpty(xpos, ypos-1)) return true;  
+        }
+        else if (facing == 'E') {
+            if (isEmpty( xpos+1, ypos)) return true;
+        }
+        else if (facing == 'S') {
+            if (isEmpty(xpos, ypos+1)) return true;   
+        }
+        else if (facing == 'W') {
+            if (isEmpty(xpos-1,ypos)) return true;   
+        }
+        return false;
+    }
+
     protected boolean isReachable(int x, int y) {
         if (x<0 || y<0 || y>=dungeon.length || x>=dungeon[y].length) return false;  // order of conditions important, e.e. dungeon[y] must come last
+        char[] c = new char[1];
+        if (get(x,y) == c[0]) return false; // spielfeld darf keinen Standardwerte fuer char verwenden, das waere zu leicht!        
         return get(x,y)!=Setup.BLOCK;
+    }
+
+    protected boolean isEmpty(int x, int y) { //##### for monsters
+        if (x<0 || y<0 || y>=dungeon.length || x>=dungeon[y].length) return false;  // order of conditions important, e.e. dungeon[y] must come last
+        return get(x,y)==Setup.EMPTY;
+    }
+
+    public void registerAsMoveable(Item i) {
+        // if (true) return;
+        if (moveables.contains(i)) return;
+        moveables.add(i);    
+        System.out.println("DMA moveables: "+moveables.size());
+    }
+
+    public void moveMoveables() {
+        System.out.println("DMA moveable "+moveables.size());
+
+        for (Item i : moveables) {
+            i.makeMove();
+        }
+    }
+
+    public void bewegeGegenstandVonNach(int xalt, int yalt, int xneu, int yneu) {
+        System.out.println("bewege von "+xalt+","+yalt+" nach "+xneu+", "+yneu);
+        char c = dungeon[yalt][xalt];
+        dungeon[yalt][xalt] = Setup.EMPTY;
+        dungeon[yneu][xneu] = c;
+
+        Item i = gegenstaende[yalt][xalt];
+        gegenstaende[yalt][xalt] = null;
+        gegenstaende[yneu][xneu] = i;
+        
     }
 
     //################# Level-Sachen
@@ -133,13 +184,15 @@ public abstract class DungeonModelAbstract implements DungeonModel
         dungeon = level;
         setStartPos(posx, posy, facing);        
         gegenstaende = erzeugeGegenstaende(level);
-        
+
         //wenn im level ein Kuerzel steht, ein Objekt erzeugen
         for (int y=0; y<level.length; y++) {
             for (int x=0; x<level[y].length; x++) {
                 if (level[y][x] != Setup.BLOCK && level[y][x]!=Setup.EMPTY) {
                     Item g = gibStandardgegenstand(level[y][x]);
-                    gegenstaende[y][x] = g;                    
+                    gegenstaende[y][x] = g;
+                    g.posX = x;
+                    g.posY = y;
                 }
             }
         }
@@ -148,8 +201,8 @@ public abstract class DungeonModelAbstract implements DungeonModel
     public abstract Item gibStandardgegenstand(char type);
 
     //################# Setter
-    
-       final public void setStartPos(int startX, int startY) {
+
+    final public void setStartPos(int startX, int startY) {
         setStartPos(startX, startY, 'N');
     }
 
@@ -161,16 +214,11 @@ public abstract class DungeonModelAbstract implements DungeonModel
 
     //################# Setter 
 
-    private void set(int x, int y, char c) {
-        dungeon[y][x] = c;
-    }    
-
     public char get(int x, int y) {
         if (y<0 || y> dungeon.length-1) return Setup.BLOCK_BORDER;         // order important
         if (x<0 || x> dungeon[y].length-1) return Setup.BLOCK_BORDER;      // order important
         return dungeon[y][x];
     }
-
 
     protected void setBlock(int x, int y) {
         dungeon[y][x] = Setup.BLOCK;        
@@ -197,11 +245,16 @@ public abstract class DungeonModelAbstract implements DungeonModel
     // view.zeigeAusruestungGegenstandBild(s);
     // }
 
+    private void setItem(int x, int y, char c) {
+        dungeon[y][x] = c;
+    }    
 
     // SuS    
     final public void setzeGegenstand(int x, int y, Item g) {
-        gegenstaende[y][x] = g; // not yet implemented
-        set(x,y, g.gibKuerzel());
+        gegenstaende[y][x] = g;
+        setItem(x,y, g.gibKuerzel());
+        g.posX = x;
+        g.posY = x;
     }
 
     public Item gibGegenstandAnAktuellerPosition() {
@@ -210,14 +263,20 @@ public abstract class DungeonModelAbstract implements DungeonModel
     }
 
     public void entferneGegenstandAnAktuellerPosition() {
-        set(xpos, ypos, Setup.EMPTY);
+        entferneGegenstandAn(xpos, ypos);
+    }
+
+    public void entferneGegenstandAn(int xpos, int ypos) {
+        setItem(xpos, ypos, Setup.EMPTY);
+        Item i = gegenstaende[ypos][xpos];
+        if (moveables.contains(i)) moveables.remove(i);
         gegenstaende[ypos][xpos] = null;
         updateViewBewegung();
     }
 
     public void setzeGegenstandAnAktuellerPosition(Item g) {
         char c = g.gibKuerzel();
-        set(xpos, ypos, c);
+        setItem(xpos, ypos, c);
         gegenstaende[ypos][xpos] = g;
         updateViewBewegung();
     }

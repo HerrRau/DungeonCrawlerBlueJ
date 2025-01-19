@@ -19,7 +19,7 @@ public abstract class DungeonControllerAbstract implements DungeonController
     }
 
     private void empfangeBewegungVorwaerts() {
-        if (model.canGoForward()) model.goForward();
+        if (model.canGoForward()) model.goForward();        
     }
 
     private void empfangeBewegungDreheLinks() {
@@ -34,7 +34,7 @@ public abstract class DungeonControllerAbstract implements DungeonController
         return model.gibStandardgegenstand(c); 
     }
 
-    @Override public void receiveRequest(int view, int nummer) {
+    @Override public void receiveRequest(int view, int nummer) {        
         if (view == 0) // Figur
         {
             switch(nummer) {
@@ -61,6 +61,7 @@ public abstract class DungeonControllerAbstract implements DungeonController
         }
         if (view == 2) // Bewegung
         {
+            model.moveMoveables();
             switch (nummer) {
                 case 0: empfangeBewegungVorwaerts(); break;
                 case 1: empfangeBewegungDreheLinks(); break;

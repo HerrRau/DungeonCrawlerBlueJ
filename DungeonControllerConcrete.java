@@ -10,7 +10,7 @@ public class DungeonControllerConcrete extends crawlergame.DungeonControllerAbst
         // System.out.println("DCC empfaengt: "+view+", "+nummer+"\n");
         if (view == 2) {
             switch(nummer) {
-                case 0: super.receiveRequest(view, nummer); break;
+                case 0: super.receiveRequest(view, nummer); break; //moveables sollen moven
                 case 1: super.receiveRequest(view, nummer); break;
                 case 2:  super.receiveRequest(view, nummer); break;
                 case 3: nimmGegenstand(); break;

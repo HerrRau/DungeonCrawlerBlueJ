@@ -16,7 +16,7 @@ public class Main
     {
         Setup.useTestModeFigur = false; 
         Setup.setPath(this);
-        
+
         model = new DungeonModelSuS();
         view = new DungeonViewConcrete();
         controller = new DungeonControllerConcrete();
@@ -28,11 +28,13 @@ public class Main
         model.setzeFigur(f); // Reihenfolge egal
         f.setView(view); // Reihenfolge wichtig, muss vor model.setzeView - why?
 
-        model.setView(view);
+        model.setzeLevel();
 
-        // f.setzeWaffe( new Waffe() );
+        model.setView(view);
         
-        //model.setzeGegenstand( 2,2,new Muenze());
+        // f.setzeWaffe( new Waffe() );
+
+        model.setzeGegenstand( 2,2,new Monster());
         start();
     }
 

@@ -291,40 +291,62 @@ public class JPanelBewegung extends JPanel
     }
 
     void drawItem(int depth, int x, char type, Graphics g) {
-        GEGENSTAND geg = ((DungeonControllerAbstract)controller).gibStandardgegenstand(type);
-        String bildname = ((DungeonControllerAbstract)controller).gibStandardgegenstand(type).gibBildname();
+        Item geg = ((DungeonControllerAbstract)controller).gibStandardgegenstand(type);
+        String bildname = geg.gibBildname();
+        
+        boolean isBig = geg.isBig();
+        
+        
         ImageIcon icon = null;
         if (bildname==null) {
             System.out.println("Fehlender Bildname bei Objekt mit Kuerzel "+type);
             return;
         }
-        // System.out.println(geg);
-        // System.out.println(geg.getImageURL());
-        // icon = GraphicsHelper.createImageIcon(bildname);
-        // icon = new ImageIcon(geg.getImageURL());
         icon = new ImageIcon(Setup.getResource(bildname));
         int orgWidth = icon.getIconWidth();
         int orgHeight = icon.getIconHeight();
-        int newWidth = (int) (blockSizeX[depth]/2);
-        int newHeight = (int) (orgHeight*1.0*orgWidth/newWidth); //unused ...zB auf Breite der Ebene, und dann nachganz unten?
-        newWidth = (int)(newWidth * 0.8);
-        newHeight = (int)(newHeight * 0.8);
+
+        int newWidth, newHeight;
+        int xpos, ypos;
+        if (isBig) {
+            double perspFact = 1; //###1
+            newWidth = (int) (blockSizeX[depth]/perspFact); //###################k
+            newHeight = (int) (orgHeight*1.0*orgWidth/newWidth); //unused ...zB auf Breite der Ebene, und dann nachganz unten?
+            newWidth = (int)(newWidth * 0.8);
+            newHeight = (int)(newHeight * 0.8);
+
+            xpos = canvasSizeX/2 - newWidth/2; //i.e. mitte
+            ypos = canvasSizeY/2 - (int) blockSizeX[depth]/2; // perspektivisch schwierig
+
+        } else {
+            newWidth = (int) (blockSizeX[depth]/2); //###################k
+            newHeight = (int) (orgHeight*1.0*orgWidth/newWidth); //unused ...zB auf Breite der Ebene, und dann nachganz unten?
+            newWidth = (int)(newWidth * 0.8);
+            newHeight = (int)(newHeight * 0.8);
+            Image newImage = scaleImage2(icon, newWidth, newWidth*1);
+
+            xpos = canvasSizeX/2 - newWidth/2; //i.e. mitte
+            ypos = canvasSizeY/2; // perspektivisch schwierig
+
+        }
         Image newImage = scaleImage2(icon, newWidth, newWidth*1);
 
-        int xpos = canvasSizeX/2 - newWidth/2; //i.e. mitte
-        int ypos = canvasSizeY - newImage.getHeight(null) - frameThicknessY; //wg border, ist jetzt: ganz unten
-        ypos = canvasSizeY/2; //eher:Mitte
-
+        int abstandX = Math.abs(miniDungeon[depth].length/2 - x);
+        
         if (x<miniDungeon[depth].length/2) { //links der figur
-            xpos = xpos - (int)blockSizeX [depth]/2;
+            xpos = xpos - (int)blockSizeX [depth]/2 * abstandX;
             newWidth = (int) (newWidth * 0.7);
         }
         else if (x>miniDungeon[depth].length/2) { //rechts der figur
-            xpos = xpos + (int)blockSizeX [depth]/2;
+            xpos = xpos + (int)blockSizeX [depth]/2 * abstandX;
             newWidth = (int) (newWidth * 0.7);
         }        
         if (x==miniDungeon[depth].length/2 && depth == miniDungeon.length-1) {
             jButton1.setVisible(true);
+            jButton1.setOpaque(false);
+            jButton1.setContentAreaFilled(false);
+            // jButton1.setBorderPainted(false);
+
             jButton1.setBounds((int) xpos, (int) ypos, newWidth, newWidth*1);
             jButton1.setIcon( new ImageIcon (newImage));
         } else {

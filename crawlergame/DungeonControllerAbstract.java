@@ -30,72 +30,7 @@ public abstract class DungeonControllerAbstract implements DungeonController
         model.turnRight();
     }
 
-    private void empfangeRucksackGegenstand() {
-        // Gegenstand g = null;
-        // g = model.gibAusRucksack(aktuellerGegenstand);
-        // if (g==null) return;
-        // view.zeigeAusruestungGegenstandBeschreibung(g.beschreibung);        
-        // //ausruesten?
-        // //anwenden?
-        // if (g instanceof Waffe) {
-        // entferneAusgewaehltesRucksack();
-        // empfangeRucksackDrop();
-        // model.setzeWaffe((Waffe)g);
-        // }
-    }
-
-    private void entferneAusgewaehltesRucksack() {
-        // Gegenstand g = model.gibAusRucksack(aktuellerGegenstand);
-        // if (g==null) return;    
-        // model.entferneAusRucksack(aktuellerGegenstand); //blaettern?
-    }
-
-    private void empfangeRucksackDrop() {
-        // Gegenstand g = model.gibAusRucksack(aktuellerGegenstand);
-        // if (g==null) return;    
-        // model.entferneAusRucksack(aktuellerGegenstand); //blaettern?
-        // model.setzeGegenstandAnPosition(g);
-
-        // aktuellerGegenstand = 0; //hmmmmmm
-
-    }
-
-    private void empfangeRucksackZurueck() {
-        // aktuellerGegenstand--;
-        // if (aktuellerGegenstand<0) aktuellerGegenstand = 0;
-        // Gegenstand g = null;
-        // g = model.gibAusRucksack(aktuellerGegenstand);
-        // if (g==null) {
-        // view.zeigeAusruestungGegenstandBild("images/nichts.png");        
-        // return;
-        // }
-        // view.zeigeAusruestungGegenstandBild(Setup.gibBildname(g));        
-        // view.zeigeAusruestungGegenstandName(g.name);        
-    }
-
-    private void empfangeRucksackVor() {
-        // aktuellerGegenstand++;
-        // int max = 9;
-        // if (aktuellerGegenstand>max) aktuellerGegenstand = max;
-        // Gegenstand g = null;
-        // g = model.gibAusRucksack(aktuellerGegenstand);
-        // if (g==null) {
-        // view.zeigeAusruestungGegenstandBild("images/nichts.png");        
-        // return;
-        // }
-        // view.zeigeAusruestungGegenstandBild(Setup.gibBildname(g));        
-        // view.zeigeAusruestungGegenstandName(g.name);        
-    }
-
-    private void empfangeFigurWaehleKoerperteil(int index) {
-    }
-
-    private void empfangeFigurButton(int index) {
-    }
-
-    // public abstract GEGENSTAND gibStandardgegenstand(char c);
-
-    public GEGENSTAND gibStandardgegenstand(char c) {
+    public Item gibStandardgegenstand(char c) {
         return model.gibStandardgegenstand(c); 
     }
 

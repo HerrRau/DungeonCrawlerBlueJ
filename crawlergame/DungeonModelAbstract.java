@@ -3,10 +3,11 @@ package crawlergame;
 public abstract class DungeonModelAbstract implements DungeonModel
 {
     char[][] dungeon;
-    GEGENSTAND[][] gegenstaende;
+    Item[][] gegenstaende;
     char facing;
     int xpos;
     int ypos;
+    char comesFrom;
 
     private DungeonView view;
 
@@ -61,37 +62,21 @@ public abstract class DungeonModelAbstract implements DungeonModel
 
         if (facing == 'N') {
             ypos = ypos-1;  
+            comesFrom = 'S';
         }
         else if (facing == 'E') {
             xpos = xpos+1;
+            comesFrom = 'W';
         }
         else if (facing == 'S') {
             ypos = ypos+1;   
+            comesFrom = 'N';
         }
         else if (facing == 'W') {
             xpos = xpos-1;   
+            comesFrom = 'E';
         }
         //System.out.println(xpos+","+ypos+"\n");
-        updateViewBewegung();
-    }
-
-    final public void goBack() {
-        System.out.print("Going from "+xpos+","+ypos+" to ");
-
-        if (facing == 'N') {
-            if (isReachable(xpos, ypos+1)) ypos = ypos+1;  
-        }
-        else if (facing == 'E') {
-            if (isReachable( xpos-1, ypos)) xpos = xpos-1;
-        }
-        else if (facing == 'S') {
-            if (isReachable(xpos, ypos-1)) ypos = ypos-1;   
-        }
-        else if (facing == 'W') {
-            if (isReachable(xpos+1,ypos)) xpos = xpos+1;   
-        }
-
-        //System.out.println(xpos+","+ypos+", facing "+facing+"\n");
         updateViewBewegung();
     }
 
@@ -100,6 +85,7 @@ public abstract class DungeonModelAbstract implements DungeonModel
         else if (facing == 'E') facing = 'N';
         else if (facing == 'S') facing = 'E';
         else if (facing == 'W') facing = 'S';
+        comesFrom = 'X';
         updateViewBewegung();
     }
 
@@ -108,6 +94,7 @@ public abstract class DungeonModelAbstract implements DungeonModel
         else if (facing == 'E') facing = 'S';
         else if (facing == 'S') facing = 'W';
         else if (facing == 'W') facing = 'N';
+        comesFrom = 'X';
         updateViewBewegung();
     }
 
@@ -128,15 +115,16 @@ public abstract class DungeonModelAbstract implements DungeonModel
     }
 
     protected boolean isReachable(int x, int y) {
+        if (x<0 || y<0 || y>=dungeon.length || x>=dungeon[y].length) return false;  // order of conditions important, e.e. dungeon[y] must come last
         return get(x,y)!=Setup.BLOCK;
     }
 
     //################# Level-Sachen
 
-    private GEGENSTAND [][] erzeugeGegenstaende(char[][] dung) {
-        GEGENSTAND [][] temp = new GEGENSTAND[dung.length][];
+    private Item [][] erzeugeGegenstaende(char[][] dung) {
+        Item [][] temp = new Item[dung.length][];
         for (int i=0; i< dung.length; i++)  {
-            temp[i] = new GEGENSTAND[dungeon[i].length];
+            temp[i] = new Item[dungeon[i].length];
         }
         return temp;
     }
@@ -150,14 +138,14 @@ public abstract class DungeonModelAbstract implements DungeonModel
         for (int y=0; y<level.length; y++) {
             for (int x=0; x<level[y].length; x++) {
                 if (level[y][x] != Setup.BLOCK && level[y][x]!=Setup.EMPTY) {
-                    GEGENSTAND g = gibStandardgegenstand(level[y][x]);
+                    Item g = gibStandardgegenstand(level[y][x]);
                     gegenstaende[y][x] = g;                    
                 }
             }
         }
     }
 
-    public abstract GEGENSTAND gibStandardgegenstand(char type);
+    public abstract Item gibStandardgegenstand(char type);
 
     //################# Setter
     
@@ -178,8 +166,8 @@ public abstract class DungeonModelAbstract implements DungeonModel
     }    
 
     public char get(int x, int y) {
-        if (x<0 || x> dungeon.length-1) return Setup.BLOCK; 
-        if (y<0 || y> dungeon.length-1) return Setup.BLOCK;         
+        if (y<0 || y> dungeon.length-1) return Setup.BLOCK;         // order important
+        if (x<0 || x> dungeon[y].length-1) return Setup.BLOCK;      // order important
         return dungeon[y][x];
     }
 
@@ -210,18 +198,14 @@ public abstract class DungeonModelAbstract implements DungeonModel
 
 
     // SuS    
-    final public void setzeGegenstand(int x, int y, GEGENSTAND g) {
+    final public void setzeGegenstand(int x, int y, Item g) {
         gegenstaende[y][x] = g; // not yet implemented
         set(x,y, g.gibKuerzel());
     }
 
-    public GEGENSTAND gibGegenstandAnAktuellerPosition() {
-        GEGENSTAND g = gegenstaende[ypos][xpos]; 
-        //System.out.println("DMA "+g+": "+xpos+","+ypos);
+    public Item gibGegenstandAnAktuellerPosition() {
+        Item g = gegenstaende[ypos][xpos]; 
         return g;
-        // char c = get(xpos, ypos);
-        // if (c==Setup.EMPTY || c==Setup.BLOCK) return null;        
-        //return Setup.gibGegenstand(c); // heisst: alle sind generisch
     }
 
     public void entferneGegenstandAnAktuellerPosition() {
@@ -230,7 +214,7 @@ public abstract class DungeonModelAbstract implements DungeonModel
         updateViewBewegung();
     }
 
-    public void setzeGegenstandAnAktuellerPosition(GEGENSTAND g) {
+    public void setzeGegenstandAnAktuellerPosition(Item g) {
         char c = g.gibKuerzel();
         set(xpos, ypos, c);
         gegenstaende[ypos][xpos] = g;
@@ -240,23 +224,5 @@ public abstract class DungeonModelAbstract implements DungeonModel
     public void sendeNachricht(String s) {
         view.zeigeBewegungNachricht(s);
     }
-
-    // public Gegenstand gibAusRucksack(int i) {
-    // return figur.gibAusRucksack(i);
-    // }
-
-    // public void entferneAusRucksack(int i) {
-    // figur.entferneAusRucksack(i);
-    // updateViewRucksack();
-    // }
-
-    // public boolean nimmGegenstand(Gegenstand g) {
-    // boolean b = figur.nimmGegenstandAuf(g);
-    // if (b) {
-    // updateViewBewegung();            
-    // }
-    // return b;
-    // }
-
 
 }

@@ -1,9 +1,10 @@
 package crawlergame;
 import java.awt.*;
+import javax.swing.*;
 
 public class Setup
 {
-    public static boolean useTestModeFigur = false;
+    public static boolean useTestModeFigur = true;
     public static Color backgroundColor = Color.WHITE;
     public static String imagePath = "images/";
     public final static char EMPTY = '-';
@@ -14,13 +15,24 @@ public class Setup
     public final static char FACING_W = '<';
 
     static Class cls;
+    
+    static {
+        setPath (new Setup () ); //standardmaessig alles relytiv zum Speicherort dieser Klasse
+    }
 
     public static void setPath(Object o) {
-        cls = o.getClass();
+        cls = o.getClass(); // alle URl-Anfragen relativ zum Speicherot der Klasse des uebergebenen Objekts
     }
 
     public static java.net.URL getResource(String filename) {
-        return cls.getResource(imagePath+filename);
+        return cls.getResource(imagePath+filename); 
     }
+    
+    static Icon resizeIcon(ImageIcon icon, int resizedWidth, int resizedHeight) {
+        Image img = icon.getImage();  
+        Image resizedImage = img.getScaledInstance(resizedWidth, resizedHeight,  java.awt.Image.SCALE_SMOOTH);  
+        return new ImageIcon(resizedImage);
+    }
+
 
 }

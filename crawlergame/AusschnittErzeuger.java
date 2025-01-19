@@ -4,40 +4,22 @@ public class AusschnittErzeuger
 {
     DungeonModelAbstract model;
     boolean use7533 = false;
-    boolean use3333 = false;
-    boolean use33333 = true;
+    boolean use33333 = false;
     boolean use7555 = false;
     boolean use7777 = false;
+    boolean use9999999 = true;
 
     public AusschnittErzeuger(DungeonModelAbstract m)
     {
         model = m;
     }
 
-    private  char[][] convert(char[][] org) {
-        // 5333 to 3333
-        char[][] temp = new char [org.length][];
-        for (int i=0; i< temp.length; i++) {
-            if (i==0) {
-                temp[i] = new char [3];
-                temp[i][0] = org[i][1];
-                temp[i][1] = org[i][2];
-                temp[i][2] = org[i][3];
-            } else {
-                temp[i] = new char [org[i].length];
-                for (int j=0; j<temp[i].length; j++) {
-                    temp[i][j] = org[i][j];
-                }
-            }
-        }
-        return temp;
-    }
-
     public  char[][] createMiniDungeon(int posx, int posy, char facing) {
         if (use7533) return createMiniDungeon7533(posx, posy, facing);
-        if (use33333) return createMiniDungeon33333(posx, posy, facing);
+        if (use33333) return createMiniDungeon(5, 3, posx, posy, facing);
         if (use7555) return createMiniDungeon7555(posx, posy, facing);
         if (use7777) return createMiniDungeon7777(posx, posy, facing);
+        if (use9999999) return createMiniDungeon9999999(posx, posy, facing);
         return createMiniDungeon5333(posx, posy, facing);
     }
 
@@ -324,14 +306,15 @@ public class AusschnittErzeuger
         return result;
     }
 
+    private char[][] createMiniDungeon9999999(int posx, int posy, char facing) {
+        return createMiniDungeon(7, 9, posx, posy, facing);
+    }
 
-    private char[][] createMiniDungeon33333(int posx, int posy, char facing) {
-        char[][] result = new char[5][];
-        result[0] = new char[3];
-        result[1] = new char[3];
-        result[2] = new char[3];
-        result[3] = new char[3];
-        result[4] = new char[3];
+    private char[][] createMiniDungeon(int depth, int width, int posx, int posy, char facing) {
+        char[][] result = new char[depth][];
+        for (int i=0; i<depth; i++) {
+            result[i] = new char[width];
+        }
 
         int factorNorth = 1;
         int factorEast= 1;
@@ -340,48 +323,28 @@ public class AusschnittErzeuger
         if (facing=='E') factorEast  = +1;
         if (facing=='W') factorEast  = -1;
 
-        if (facing=='N' || facing == 'S') {
-            result[0][0] = model.get(posx-1*factorNorth, posy-4*factorNorth); 
-            result[0][1] = model.get(posx              , posy-4*factorNorth);
-            result[0][2] = model.get(posx+1*factorNorth, posy-4*factorNorth);
-            result[1][0] = model.get(posx-1*factorNorth, posy-3*factorNorth); 
-            result[1][1] = model.get(posx              , posy-3*factorNorth);
-            result[1][2] = model.get(posx+1*factorNorth, posy-3*factorNorth);
-            result[2][0] = model.get(posx-1*factorNorth, posy-2*factorNorth);
-            result[2][1] = model.get(posx,               posy-2*factorNorth);
-            result[2][2] = model.get(posx+1*factorNorth, posy-2*factorNorth);
-            result[3][0] = model.get(posx-1*factorNorth, posy-1*factorNorth);
-            result[3][1] = model.get(posx,               posy-1*factorNorth);
-            result[3][2] = model.get(posx+1*factorNorth, posy-1*factorNorth);
-            result[4][0] = model.get(posx-1*factorNorth, posy);
-            result[4][1] = model.get(posx,               posy);
-            result[4][2] = model.get(posx+1*factorNorth, posy);
+        if (facing=='N' || facing == 'S') {           
+            for (int i=0; i<depth; i++) {
+                for (int j=0; j<result[i].length; j++) {
+                    int f = width/2 - j;
+                    int g = depth-1-i;
+                    result[i][j] = model.get(posx - f * factorNorth, posy - g * factorNorth); 
+                    // System.out.println("result["+i+"]["+j+"] = model.get(posx-"+f+"*factorNorth, posy-"+g+"*factorNorth);");
+                }
+            }
         }
 
         else if (facing=='E' || facing == 'W') {
-            result[0][0] = model.get(posx+4*factorEast, posy-1*factorEast);
-            result[0][1] = model.get(posx+4*factorEast, posy);
-            result[0][2] = model.get(posx+4*factorEast, posy+1*factorEast);
-
-            result[1][0] = model.get(posx+3*factorEast, posy-1*factorEast);
-            result[1][1] = model.get(posx+3*factorEast, posy);
-            result[1][2] = model.get(posx+3*factorEast, posy+1*factorEast);
-
-            result[2][0] = model.get(posx+2*factorEast, posy-1*factorEast);
-            result[2][1] = model.get(posx+2*factorEast, posy);
-            result[2][2] = model.get(posx+2*factorEast, posy+1*factorEast);
-
-            result[3][0] = model.get(posx+1*factorEast, posy-1*factorEast);
-            result[3][1] = model.get(posx+1*factorEast, posy);
-            result[3][2] = model.get(posx+1*factorEast, posy+1*factorEast);
-
-            result[4][0] = model.get(posx,              posy-1*factorEast);
-            result[4][1] = model.get(posx,              posy);
-            result[4][2] = model.get(posx,              posy+1*factorEast);
+            for (int i=0; i<result.length; i++) {
+                for (int j=0; j<result[i].length; j++) {
+                    int g = width/2 - j;
+                    int f = depth-1-i;
+                    result[i][j] = model.get(posx + f * factorEast, posy - g * factorEast); 
+                }
+            }
         }
-
-        //result[3][1] = 8; //player
         return result;
-    }    
+    }
+
 
 }

@@ -28,14 +28,14 @@ public class Figur extends ModelSender
         rucksack[i] = null;
     }
 
-    public boolean nimmGegenstandAuf(Gegenstand g) {
+    public int nimmGegenstandAuf(Gegenstand g) {
         for (int i=0; i< rucksack.length; i++) {
             if (rucksack[i]==null) {
                 rucksack[i] = g;                
-                return true;
+                return i;
             }
         }
-        return false;
+        return -1;
     }
     
     public void setzeWaffe(Waffe w) {
@@ -46,6 +46,11 @@ public class Figur extends ModelSender
     
     public Waffe gibWaffe() {
         return waffe;
+    }
+    
+    public void entferneWaffe() {
+        waffe = null;
+        gibAnsicht().zeigeFigur(3, "nichts.png");
     }
     
     public int angriffGeben() {

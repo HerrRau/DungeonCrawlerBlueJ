@@ -8,12 +8,16 @@ public class Main
     DungeonView view;
     DungeonController controller;
 
+    public static void main(String[] args) {
+        new Main();        
+    }
 
     public Main()
     {
+        Setup.useTestModeFigur = false; 
         Setup.setPath(this);
+        
         model = new DungeonModelSuS();
-
         view = new DungeonViewConcrete();
         controller = new DungeonControllerConcrete();
         controller.setModel(model);
@@ -26,7 +30,7 @@ public class Main
 
         model.setView(view);
 
-        f.setzeWaffe( new Waffe() );
+        // f.setzeWaffe( new Waffe() );
         
         //model.setzeGegenstand( 2,2,new Muenze());
         start();

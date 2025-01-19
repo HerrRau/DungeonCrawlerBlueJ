@@ -1,6 +1,6 @@
 import crawlergame.*;
 
-public class Gegenstand extends GEGENSTAND
+public class Gegenstand extends Item
 {
     private String name;
     private String beschreibung;

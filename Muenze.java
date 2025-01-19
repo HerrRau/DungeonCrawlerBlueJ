@@ -10,7 +10,6 @@ public class Muenze extends Gegenstand
     public char gibKuerzel() {
         return 'c';
     }
-
-
+    
 
 }

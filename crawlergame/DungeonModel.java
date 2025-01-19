@@ -9,7 +9,7 @@ public interface DungeonModel
 
     public void goForward();
 
-    public void goBack();
+    // public void goBack();
 
     public void turnLeft();
 
@@ -17,14 +17,14 @@ public interface DungeonModel
 
     public void begin();
     
-    public void setzeGegenstand(int posx, int posy, GEGENSTAND g);
+    public void setzeGegenstand(int posx, int posy, Item i);
 
-    GEGENSTAND gibStandardgegenstand(char type);
+    Item gibStandardgegenstand(char type);
 
-    GEGENSTAND gibGegenstandAnAktuellerPosition();
+    Item gibGegenstandAnAktuellerPosition();
 
     void entferneGegenstandAnAktuellerPosition();
 
-    void setzeGegenstandAnAktuellerPosition(GEGENSTAND g);
+    void setzeGegenstandAnAktuellerPosition(Item i);
 
 }

@@ -1,8 +1,13 @@
-import crawlergame.Setup;
-public class DungeonControllerConcrete extends crawlergame.DungeonControllerAbstract
+import crawlergame.*;
+
+public class DungeonControllerConcrete extends DungeonControllerAbstract
 {
+    Figur figur;
+    
     public DungeonControllerConcrete()
     {
+        figur = new Figur();
+        figur.setView(view);
     }
 
     @Override
@@ -34,7 +39,8 @@ public class DungeonControllerConcrete extends crawlergame.DungeonControllerAbst
     }
 
     public Figur gibFigur() {
-        return ((DungeonModelSuS)model).gibFigur();
+        return figur;
+        // return ((DungeonModelSuS)model).gibFigur();
     }
 
     //##################

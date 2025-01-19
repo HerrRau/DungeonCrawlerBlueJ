@@ -9,7 +9,7 @@ public abstract class DungeonModelAbstract implements DungeonModel
     int ypos;
     char comesFrom;
 
-    private DungeonView view;
+    protected DungeonView view;
     private java.util.ArrayList<Item> moveables = new java.util.ArrayList();
 
     AusschnittErzeuger erzeugerAusschnitt;
@@ -28,7 +28,8 @@ public abstract class DungeonModelAbstract implements DungeonModel
         Setup.model = this;
         erzeugerAusschnitt = new AusschnittErzeuger(this);
         erzeugerExample = new ExampleErzeuger(this);
-        setzeLevel(erzeugerExample.erzeugeDungeonLeer(10), 1, 1, 'S');
+        setzeLevel(erzeugerExample.erzeugeDungeonLeer(3), 0, 0, 'S');
+        setItem(1,1,'X');
         //erzeugerExample.fillExampleSimple();
         // erzeugerExample.fillExample();
     }
@@ -198,7 +199,11 @@ public abstract class DungeonModelAbstract implements DungeonModel
         }
     }
 
-    public abstract Item gibStandardgegenstand(char type);
+    //##################################
+    
+    public Item gibStandardgegenstand(char type) {
+        return null;
+    }
 
     //################# Setter
 

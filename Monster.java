@@ -1,8 +1,9 @@
 
-public class Monster extends BeweglicherGegenstand
+public class Monster extends Gegenstand
 {
     public Monster()
     {
+        registerAsMoveable();
         setzeBildname("figur.png");
     }
 

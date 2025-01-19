@@ -19,10 +19,10 @@ public class Setup
     static Class cls;
     
     static {
-        setPath (new Setup () ); //standardmaessig alles relytiv zum Speicherort dieser Klasse
+        setPathRelativeTo (new Setup () ); //standardmaessig alles relytiv zum Speicherort dieser Klasse
     }
 
-    public static void setPath(Object o) {
+    public static void setPathRelativeTo(Object o) {
         cls = o.getClass(); // alle URl-Anfragen relativ zum Speicherot der Klasse des uebergebenen Objekts
     }
 

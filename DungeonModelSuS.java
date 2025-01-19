@@ -2,17 +2,17 @@ import crawlergame.*;
 
 public class DungeonModelSuS extends DungeonModelAbstract
 {
-    private Figur figur;
+    // private Figur figur;
     public DungeonModelSuS() {
     }
 
-    public Figur gibFigur () {
-        return figur;         
-    }
+    // public Figur gibFigur () {
+        // return figur;         
+    // }
 
-    public void setzeFigur (Figur f) {
-        figur = f;
-    }    
+    // public void setzeFigur (Figur f) {
+        // figur = f;
+    // }    
 
     // Hilfsmethode zum Anschauen
     public void zeichneLevel() {

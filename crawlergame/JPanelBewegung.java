@@ -294,13 +294,17 @@ public class JPanelBewegung extends JPanel
         g.fillRect(canvasSizeX-thicknessX, 0, thicknessX, canvasSizeY); //rechts
     }
 
+    java.util.HashMap<Character, Item> items = new java.util.HashMap<Character, Item>();
+
     void drawItem(int depth, int x, char type, Graphics g) {
-        Item geg = ((DungeonControllerAbstract)controller).gibStandardgegenstand(type);
-        String bildname = geg.gibBildname();
-        
-        boolean isBig = geg.isBig();
-        
-        
+        String bildname = "";
+        if (!items.containsKey(type)) {
+            items.put(type, ((DungeonControllerAbstract)controller).gibStandardgegenstand(type));
+        }
+        Item item = items.get(type);
+        bildname = item.gibBildname();
+        boolean isBig = item.isBig();
+
         ImageIcon icon = null;
         if (bildname==null) {
             System.out.println("Fehlender Bildname bei Objekt mit Kuerzel "+type);
@@ -333,7 +337,7 @@ public class JPanelBewegung extends JPanel
         Image newImage = scaleImage2(icon, newWidth, newWidth);
 
         int abstandX = Math.abs(miniDungeon[depth].length/2 - x);
-        
+
         if (x<miniDungeon[depth].length/2) { //links der figur
             xpos = xpos - (int)blockSizeX [depth]/2 * abstandX;
             newWidth = (int) (newWidth * 0.7);

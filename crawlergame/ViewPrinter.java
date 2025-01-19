@@ -7,9 +7,15 @@ public class ViewPrinter //implements DungeonViewBewegung
     }
 
     public void zeigeBewegungAusschnitt(char[][] dungeon, int xPosPlayer, int yPosPlayer) {
-        // char old = dungeon[dungeon.length-1][dungeon[0].length/2+1];
-        // dungeon[dungeon.length-1][dungeon[0].length/2] = Setup.FACING_N; //Player
+        System.out.println("\nSichtfeld: \n");
 
+        int yTemp = dungeon.length-1;
+        int xTemp = dungeon[0].length/2;
+
+        char old = dungeon[yTemp][xTemp];
+        dungeon[yTemp][xTemp] = Setup.FACING_N; //Player
+
+        
         for (int y=0; y<dungeon.length; y++) {
             for (int i=0; i<10-dungeon[y].length/2; i++) {
                 System.out.print(" ");
@@ -27,10 +33,12 @@ public class ViewPrinter //implements DungeonViewBewegung
         }
         System.out.println();
 
-        // dungeon[dungeon.length-1][dungeon[0].length/2] = old; // before Player
+        dungeon[yTemp][xTemp] = old; // before Player
     }
 
     public void zeigeBewegungDungeon(char[][] dungeon, int xPosPlayer, int yPosPlayer, char facing) {
+        System.out.println("\nSpielfeld: \n");
+
         char old = dungeon[yPosPlayer][xPosPlayer];
         dungeon[yPosPlayer][xPosPlayer] = getFacingChar(facing); //Player
 
@@ -46,6 +54,7 @@ public class ViewPrinter //implements DungeonViewBewegung
             System.out.println();
         }
         System.out.println();
+        System.out.println("-------------------------");
 
         dungeon[yPosPlayer][xPosPlayer] = old; // before Player
     }

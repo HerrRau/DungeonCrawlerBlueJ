@@ -7,7 +7,12 @@ public class DungeonControllerConcrete extends DungeonControllerAbstract
     public DungeonControllerConcrete()
     {
         figur = new Figur();
-        figur.setView(view); //##################### nein!
+        figur.setView(view); //##################### zu frueh
+    }
+    
+    @Override public void setView(DungeonView view) {
+        super.setView(view);
+        figur.setView(view);
     }
 
     @Override

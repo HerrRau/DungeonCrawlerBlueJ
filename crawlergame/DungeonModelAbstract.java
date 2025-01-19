@@ -148,11 +148,11 @@ public abstract class DungeonModelAbstract implements DungeonModel
         // if (true) return;
         if (moveables.contains(i)) return;
         moveables.add(i);    
-        System.out.println("DMA moveables: "+moveables.size());
+        //System.out.println("DMA moveables: "+moveables.size()); //##########################################
     }
 
     public void moveMoveables() {
-        System.out.println("DMA moveable "+moveables.size());
+        //System.out.println("DMA moveable "+moveables.size());
 
         for (Item i : moveables) {
             i.makeMove();

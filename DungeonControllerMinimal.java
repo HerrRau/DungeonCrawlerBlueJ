@@ -6,8 +6,11 @@ public class DungeonControllerMinimal extends DungeonControllerAbstract
 
     public DungeonControllerMinimal() {
         figur = new Figur();
-        figur.setView(view);
     }
 
+    @Override public void setView(DungeonView view) {
+        super.setView(view);
+        figur.setView(view);
+    }
 
 }

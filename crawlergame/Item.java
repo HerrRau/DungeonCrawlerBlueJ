@@ -6,6 +6,10 @@ public abstract class Item
     public char facing = 'N';
     char comesFrom;
 
+    public Item() {
+        Setup.setPathRelativeTo(this);
+    }
+
     public abstract char gibKuerzel();
 
     public abstract String gibBildname();
@@ -34,7 +38,7 @@ public abstract class Item
 
     final public void goForward() {
         //if (true) return;
-        
+
         //does not check if possible in itself
         //can go forward does that
         //facing checked doubly, in canGoForward and here - not elegant, but allows for controller
@@ -42,7 +46,7 @@ public abstract class Item
 
         int xalt = posX;
         int yalt = posY;
-        
+
         if (facing == 'N') {
             posY = posY-1;  
             comesFrom = 'S';
@@ -59,12 +63,10 @@ public abstract class Item
             posX = posX-1;   
             comesFrom = 'E';
         }
-        
+
         getModel().bewegeGegenstandVonNach(xalt, yalt, posX, posY);
 
-
     }
-
     final public void turnLeft() {
         System.out.println(this+ " turnsLeft");
         if (facing == 'N') facing = 'W';

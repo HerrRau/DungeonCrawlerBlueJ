@@ -34,10 +34,6 @@ public class Monster extends Gegenstand implements Kaempfend
         return 10;
     }
     
-    public String gibName() {
-        return "Monster";
-    }
-    
     public void nimmSchaden(int i) {
         
     }

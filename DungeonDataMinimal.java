@@ -13,7 +13,7 @@ public class DungeonDataMinimal extends DungeonData
         initialisiereLevel();
     }
 
-    //# Getter (von Interface verlangt)
+    //# Getter (von Oberklasse verlangt)
 
     public char[][] gibLevel() {
         return level;
@@ -34,8 +34,10 @@ public class DungeonDataMinimal extends DungeonData
     //# Private Hilfsmethode, muesste nicht sein
 
     private void initialisiereLevel()  {                
+        int zeilen = 3;
+        int spalten = 4;
         //Initialisieren der Variablen, insbesondere die Groesse
-        level = new char[3][4];
+        level = new char[zeilen][spalten];
         //Fuellen des Levels
         level[0][0] = '-';
         level[0][1] = '-';
@@ -49,6 +51,7 @@ public class DungeonDataMinimal extends DungeonData
         level[2][1] = '-';
         level[2][2] = '-';
         level[2][3] = '-';
+        
         startX = 0;
         startY = 0;
         startFacing = 'N';

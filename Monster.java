@@ -1,5 +1,5 @@
 
-public class Monster extends Gegenstand
+public class Monster extends Gegenstand implements Kaempfend
 {
     public Monster()
     {
@@ -24,5 +24,25 @@ public class Monster extends Gegenstand
         else {
             turnLeft();
         }
+    }
+
+    public int berechneAngriff() {
+        return 10;
+    }
+
+    public int berechneVerteidigung() {
+        return 10;
+    }
+    
+    public String gibName() {
+        return "Monster";
+    }
+    
+    public void nimmSchaden(int i) {
+        
+    }
+
+    public int berechneSchaden() {
+        return 5;        
     }
 }

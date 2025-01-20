@@ -20,7 +20,7 @@ public class DungeonFigurVorzimmer extends DungeonfensterFigur implements Dungeo
         jButton5.setContentAreaFilled(false);
         jButton6.setContentAreaFilled(false);
         jButton7.setContentAreaFilled(false);
-        
+                
         ImageIcon icon = new ImageIcon( Setup.getResource("figur_hintergrund.png") );
         jLabel2.setIcon(icon);
     }

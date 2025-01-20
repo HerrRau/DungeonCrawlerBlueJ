@@ -19,7 +19,7 @@ public abstract class Item
     }
 
     public void registerAsMoveable() {
-        getModel().registerAsMoveable(this);
+        if (getModel()!=null) getModel().registerAsMoveable(this);
     }
 
     public DungeonModel getModel() {

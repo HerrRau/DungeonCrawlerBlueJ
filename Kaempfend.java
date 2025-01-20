@@ -1,9 +1,13 @@
 
 public interface Kaempfend
 {
- int gibAngriff();
- int gibVerteidigung();
- int gibSchaden();
- void nimmSchaden(int i);
- String gibName();
+    int berechneAngriff();
+
+    int berechneVerteidigung();
+
+    int berechneSchaden();
+
+    void nimmSchaden(int i);
+
+    String gibName();
 }

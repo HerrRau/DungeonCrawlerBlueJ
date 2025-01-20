@@ -1,6 +1,6 @@
 import crawlergame.*;
 
-public class Figur extends ModelSender
+public class Figur extends ModelSender implements Kaempfend
 {
     Gegenstand  [] rucksack;
 
@@ -27,7 +27,7 @@ public class Figur extends ModelSender
     public void entferneAusRucksack(int i) {
         rucksack[i] = null;
     }
-    
+
     public int gibRucksackLaenge() {
         return rucksack.length;
     }
@@ -57,24 +57,25 @@ public class Figur extends ModelSender
         gibAnsicht().zeigeFigur(3, "nichts.png");
     }
 
-    public int angriffGeben() {
+    public int berechneAngriff() {
         return staerke;
     }
 
-    public int verteidigungGeben() {
+    public int berechneVerteidigung() {
         return geschicklichkeit;
     }
-
-    public void interagiereMitGegner(Figur gegner) {
-
+    
+    public String gibName() {
+        return "Langweilige Figur";
+    }
+    
+    public void nimmSchaden(int i) {
+        
     }
 
-    public void interagiereMitFalle(Falle f) {
-
+    public int berechneSchaden() {
+        return 5;        
     }
 
-    public void interagiereMitKiste(Kiste k) {
-
-    }
 
 }

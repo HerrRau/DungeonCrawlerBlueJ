@@ -11,6 +11,5 @@ public abstract class DungeonData
     public void zeichneLevel() {
         ViewPrinter printer = new ViewPrinter();
         printer.zeigeBewegungDungeon(gibLevel(), gibStartX(), gibStartY(), gibStartFacing());
-        
     }
 }

@@ -1,10 +1,10 @@
 import crawlergame.*;
 
-public class DungeonControllerConcrete extends DungeonControllerAbstract
+public class DungeonController extends DungeonControllerAbstract
 {
     Figur figur;
     
-    public DungeonControllerConcrete()
+    public DungeonController()
     {
         figur = new Figur();
         figur.setView(view); //##################### zu frueh

@@ -28,6 +28,7 @@ public class DungeonViewConcrete implements DungeonView
 
     public void zeigeBewegungDungeon(char[][] dungeon, int xPosPlayer, int yPosPlayer, char facing) {
         printer.zeigeBewegungDungeon(dungeon, xPosPlayer, yPosPlayer, facing);
+        view1.zeigeBewegungDungeon(dungeon, xPosPlayer, yPosPlayer, facing);
     }
 
     public void zeigeBewegungGegenstand(String bildname) {

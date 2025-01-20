@@ -1,26 +1,33 @@
 import crawlergame.*;
 
-public class DungeonModelSuS extends DungeonModelAbstract
+public class DungeonDataBeispiel extends DungeonData
 {
-    // private Figur figur;
-    public DungeonModelSuS() {
+    char [][] level;
+    int startX;
+    int startY;
+    char startFacing;
+    
+    public DungeonDataBeispiel() {
+        setzeLevel();
     }
 
-    // public Figur gibFigur () {
-        // return figur;         
-    // }
+    public char[][] gibLevel() {
+        return level;
+    }
 
-    // public void setzeFigur (Figur f) {
-        // figur = f;
-    // }    
+    public int gibStartX() {
+        return startX;        
+    }
 
-    // Hilfsmethode zum Anschauen
-    public void zeichneLevel() {
-        updateViewBewegung();
+    public int gibStartY() {
+        return startY;        
+    }
+
+    public char gibStartFacing() {
+        return startFacing;        
     }
 
     //################################## ab hier darfst du arbeiten
-
     /**
      * Am Ende muss die Methode setzeLevel(char [][] spielfeld, int startx, int starty, char blickrichtung) aufgerufen werden
      * Moegliche Blickrichtungen sind nur: 'N', 'E', 'S', 'W'
@@ -33,8 +40,6 @@ public class DungeonModelSuS extends DungeonModelAbstract
     void setzeLevelSIMPEL()  {        
         int zeilen = 1;
         int spalten = 7;
-        //temporale Variable fuer den Level
-        char [][] level;
         //Initialisieren der Variablen, insbesondere die Groesse
         level = new char[zeilen][spalten];
         //Fuellen des Levels
@@ -46,27 +51,26 @@ public class DungeonModelSuS extends DungeonModelAbstract
         level[0][5] = '-';
         level[0][6] = '-';
         //Absenden des Levels
-        setzeLevel(level, 0, 0, 'N');
-        zeichneLevel();
-        
-        //####################### lässt sich natragelich noch etwas am level veraendern, direkt, ohne Methode?
-    }  
+        startX = 0;
+        startY = 0;
+        startFacing = 'N';
 
+        //####################### lässt sich natragelich noch etwas am level veraendern, direkt, ohne Methode?
+
+    }  
     void setzeLevelXXX()  {        
         int zeilen = 6;
         int spalten = 7;
         //temporale Variable fuer den Level
-        char [][] level;
         //Initialisieren der Variablen, insbesondere die Groesse
         level = new char[zeilen][spalten];
         //Absenden des Levels
-        setzeLevel(level, 0, 0, 'N');
-        zeichneLevel();
+        startX = 0;
+        startY = 0;
+        startFacing = 'N';
     }  
 
     void setzeLevel()  {                
-        //temporale Variable fuer den Level
-        char [][] level;
         //Initialisieren der Variablen, insbesondere die Groesse
         level = new char[4][7];
         //Fuellen des Levels
@@ -99,18 +103,15 @@ public class DungeonModelSuS extends DungeonModelAbstract
         level[3][5] = '-';
         level[3][6] = '-';
         //Absenden des Levels
-        setzeLevel(level, 0, 1, 'N');
-        //nachtraeglich
-        setzeGegenstand(0,2, new Muenze());
-        zeichneLevel();
-    }  
-
+        startX = 0;
+        startY = 1;
+        startFacing = 'N';
+    }
 
 
     //################################## diese Methode ist wichtig fuer das Spiel
 
     // used by DungeonModelAbstract and JPanel
-    @Override
     public Gegenstand gibStandardgegenstand(char c) {
         //fast alle characters ausser X und - sind erlaubt (im Prinzip: 16-bit Unicode)
         if (c == 'c') return new Muenze();

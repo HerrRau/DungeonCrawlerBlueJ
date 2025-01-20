@@ -47,6 +47,14 @@ public class Gegenstand extends Item
     public void setzeName(String s) {
         name = s;
     }
+    
+    public int gibBonus() {
+        return 0;
+    }
+    
+    public boolean kannBenutzern(Figur f) {
+        return true;
+    }
 
     //muss ueberschrieben werden
     @Override public char gibKuerzel() {

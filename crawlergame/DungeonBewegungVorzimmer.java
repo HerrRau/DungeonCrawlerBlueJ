@@ -22,6 +22,11 @@ public class DungeonBewegungVorzimmer extends DungeonfensterBewegung implements 
         // jPanel.canvasSizeY = 500+80-80;
 
         super.getContentPane().setBackground(Setup.backgroundColor);
+        
+        //Font font = new Font("Verdana", Font.BOLD, 12);
+        Font font = new Font(Font.MONOSPACED, Font.PLAIN, 20);
+        jTextArea1.setFont(font);
+
 
     }
 
@@ -30,8 +35,7 @@ public class DungeonBewegungVorzimmer extends DungeonfensterBewegung implements 
         jPanel.setzeController(c);
     }
 
-
-void show(char[][] miniDungeonTemp, int xPosPlayer, int yPosPlayer) {
+    void show(char[][] miniDungeonTemp, int xPosPlayer, int yPosPlayer) {
         jPanel.show(miniDungeonTemp, xPosPlayer, yPosPlayer);
     }
 
@@ -66,18 +70,40 @@ void show(char[][] miniDungeonTemp, int xPosPlayer, int yPosPlayer) {
     }
 
     public void zeigeBewegungNachricht(String text) {
-        jTextArea1.setText("/n"+text);
+        jTextArea1.setText(text);
         jTextArea1.setCaretPosition(jTextArea1.getDocument().getLength());
-        //################## mal loeschen
-        
+        //################## 
+
     }
 
     public void zeigeBewegungAusschnitt(char[][] miniDungeonTemp, int xPosPlayer, int yPosPlayer) {
         this.show(miniDungeonTemp,xPosPlayer,yPosPlayer);
     }
 
-    public void zeigeBewegungDungeon(char[][] dungeon, int xPosPlayer, int yPosPlayer, char facing) {
+    private char getFacingChar(char dir) {
+        if (dir=='N') return Setup.FACING_N;
+        else if (dir=='E') return Setup.FACING_E;
+        else if (dir=='S') return Setup.FACING_S;
+        else return Setup.FACING_W;
 
     }
 
+    public void zeigeBewegungDungeon(char[][] dungeon, int xPosPlayer, int yPosPlayer, char facing) {
+        String result = "";
+
+        char old = dungeon[yPosPlayer][xPosPlayer];
+        dungeon[yPosPlayer][xPosPlayer] = getFacingChar(facing); //Player
+
+        for (int y=0; y<dungeon.length; y++) {
+            for (int x=0; x<dungeon[y].length; x++) {
+                char c = dungeon[y][x];
+                result += c;
+            }
+            result += "\n";
+        }
+        result += "\n";
+
+        dungeon[yPosPlayer][xPosPlayer] = old; // before Player
+        zeigeBewegungNachricht(result);
+    }
 }

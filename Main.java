@@ -4,7 +4,7 @@ import javax.swing.*;
 
 public class Main
 {
-    DungeonModelSuS model;
+    DungeonModel model;
     DungeonView view;
     DungeonController controller;
 
@@ -17,15 +17,15 @@ public class Main
         Setup.useTestModeFigur = false; 
         Setup.setPathRelativeTo(this);
 
-        model = new DungeonModelSuS();
+        model = new DungeonModel();
         view = new DungeonViewConcrete();
-        controller = new DungeonControllerConcrete();
+        controller = new DungeonController();
         controller.setModel(model);
         controller.setView(view);
         view.setController(controller);     
         model.setzeLevel();
         model.setView(view);
-        model.begin();
+        model.begin(); // -> macht nur updateView
         //model.setzeGegenstand( 2,2,new Monster());
     }
 

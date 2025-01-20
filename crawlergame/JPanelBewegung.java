@@ -254,6 +254,12 @@ public class JPanelBewegung extends JPanel
     //#################################
 
     private void draw(Graphics g) {
+        if (miniDungeon==null) { //### nicht voellig eleganter workaround gegen bug, wenn am Anfang noch kein Level da
+            System.out.println("***************** JPB miniDUngeon is null - shouldn't happen ****************");
+        }
+        
+        
+        
         //System.out.println("JPB drawing"); //####################
         eraseAll(g);
         if (drawLines) drawLines(g);

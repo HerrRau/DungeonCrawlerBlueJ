@@ -44,8 +44,9 @@ public class Figur extends ModelSender implements Kaempfend
 
     public void setzeWaffe(Waffe w) {
         waffe = w;
-        gibAnsicht().zeigeFigur(3, "sword.png");
-        //gibAnsicht().zeigeFigur(3, w.gibBildname());
+        // gibAnsicht().zeigeFigur(0, "sword.png");
+        gibAnsicht().zeigeFigur(0, w.gibBildname());
+        gibAnsicht().zeigeFigur(4, w.gibBildname());
     }
 
     public Waffe gibWaffe() {

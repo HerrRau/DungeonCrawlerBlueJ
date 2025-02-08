@@ -52,7 +52,7 @@ public class Gegenstand extends Item
         return 0;
     }
     
-    public boolean kannBenutzern(Figur f) {
+    public boolean kannBenutzen(Figur f) {
         return true;
     }
 
